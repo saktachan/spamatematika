@@ -1,4 +1,4 @@
-const CACHE_NAME = 'spa matematika-v1792354671568';
+const CACHE_NAME = 'spa perkalian-v1793202330289';
 const urlsToCache = [
   './',
   './index.html',

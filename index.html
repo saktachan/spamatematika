@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belajar Perkalian Ceria - Kelas 3</title>
+    <title>Belajar Perkalian Ceria - Kelas 3 SD</title>
     
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,7 +11,7 @@
     <!-- Google Fonts for Kids -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Animate.css for easy animations -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -22,65 +22,116 @@
     <style>
         body {
             font-family: 'Fredoka', sans-serif;
-            background-color: #f0fdfa; /* Light teal background */
-            background-image: radial-gradient(#bae6fd 20%, transparent 20%), radial-gradient(#bae6fd 20%, transparent 20%);
-            background-color: #f0fdfa;
+            background-color: #f0f9ff;
+            background-image: 
+                radial-gradient(#bae6fd 20%, transparent 20%), 
+                radial-gradient(#fecdd3 20%, transparent 20%);
             background-position: 0 0, 25px 25px;
             background-size: 50px 50px;
             overflow-x: hidden;
             margin: 0;
             padding: 0;
+            user-select: none;
         }
 
         /* Hide sections by default for SPA routing */
         .page-section {
             display: none;
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.4s ease-out;
         }
 
         .page-section.active {
             display: block;
         }
 
-        /* Custom Animations */
-        @keyframes bounce-slight {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        /* Custom Pop & Boing Button Animation */
+        @keyframes boing {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.12, 0.88); }
+            50% { transform: scale(0.95, 1.05); }
+            70% { transform: scale(1.03, 0.97); }
+            100% { transform: scale(1); }
         }
 
-        .bounce-hover:hover {
-            animation: bounce-slight 0.5s ease infinite;
+        .btn-pop-anim {
+            animation: boing 0.35s ease-in-out;
+        }
+
+        /* Active Navigation Tab Highlight */
+        .nav-btn {
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: #475569;
+            background: transparent;
+        }
+
+        .nav-btn:hover {
+            background-color: #f1f5f9;
+            color: #0284c7;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active-nav {
+            background: linear-gradient(135deg, #0ea5e9, #2563eb);
+            color: #ffffff !important;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* Sound Ripple Effect */
+        .sound-ripple {
+            position: fixed;
+            border-radius: 50%;
+            border: 3px solid #fbbf24;
+            background: rgba(251, 191, 36, 0.25);
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0);
+            animation: ripple-out 0.45s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes ripple-out {
+            to {
+                transform: translate(-50%, -50%) scale(2.8);
+                opacity: 0;
+            }
         }
 
         .fruit-icon {
-            font-size: 2rem;
+            font-size: 2.2rem;
             display: inline-block;
-            transition: transform 0.2s;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
         }
 
         .fruit-icon:hover {
-            transform: scale(1.3) rotate(10deg);
+            transform: scale(1.35) rotate(12deg);
         }
 
         .box-container {
-            background: rgba(255, 255, 255, 0.8);
-            border: 4px dashed #60a5fa;
-            border-radius: 20px;
-            padding: 10px;
-            min-height: 80px;
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border: 4px dashed #38bdf8;
+            border-radius: 24px;
+            padding: 12px;
+            min-height: 90px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
+            box-shadow: 0 8px 15px -3px rgba(56, 189, 248, 0.15);
+            position: relative;
         }
 
-        /* Scrollbar styling */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: #88a4e6; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #5570b5; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #60a5fa; }
     </style>
+
+    <meta name="theme-color" content="#ffffff">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#ffffff">
@@ -88,93 +139,164 @@
     <link rel="apple-touch-icon" href="icon-192.png">
   
 </head>
-<body class="text-gray-800 h-screen flex flex-col">
+<body class="text-gray-800 min-h-screen flex flex-col">
 
-    <nav class="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b-4 border-blue-400">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col lg:flex-row justify-between items-center gap-4">
-            <!-- Bagian Logo & Judul -->
-            <div class="text-2xl sm:text-3xl font-bold text-blue-600 flex items-center gap-3 w-full lg:w-auto justify-center lg:justify-start flex-shrink-0">
-                <img src="https://iili.io/nwB2YPa.md.png" alt="Logo UIN Madura" class="h-10 sm:h-12 w-auto">
-                <span>SPA Perkalian</span>
+    <!-- HEADER & NAVIGATION (RAPI & MODERN) -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 border-b-4 border-sky-300">
+        <div class="max-w-6xl mx-auto px-4 py-2.5 flex flex-col lg:flex-row justify-between items-center gap-3">
+            <!-- Bagian Logo & Judul + Tombol Suara Mobile -->
+            <div class="flex items-center justify-between w-full lg:w-auto">
+                <div class="flex items-center gap-3 cursor-pointer group" onclick="navigate('home')">
+                    <img src="https://iili.io/nwB2YPa.md.png" alt="Logo UIN Madura" class="h-10 sm:h-11 w-auto drop-shadow-sm group-hover:scale-105 transition-transform">
+                    <div>
+                        <span class="block text-xl sm:text-2xl font-bold text-sky-700 leading-none">SPA Perkalian</span>
+                        <span class="text-[11px] font-bold text-orange-600 bg-orange-100 px-2.5 py-0.5 rounded-full inline-block mt-1 border border-orange-200">Kelas 3 SD / MI</span>
+                    </div>
+                </div>
+
+                <!-- Tombol Suara (Tampil di Mobile) -->
+                <button onclick="toggleSound()" class="lg:hidden px-3 py-1.5 bg-sky-50 hover:bg-sky-100 text-sky-700 rounded-full font-bold text-xs border-2 border-sky-200 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                    <span class="soundIconEl text-base">🔊</span>
+                    <span class="soundTextEl">Aktif</span>
+                </button>
             </div>
-            <!-- Bagian Menu Navigasi -->
-            <div class="flex gap-2 sm:gap-3 w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0 justify-start lg:justify-end px-1 custom-scrollbar">
-                <button onclick="navigate('home')" class="whitespace-nowrap nav-btn px-4 py-2 bg-yellow-300 hover:bg-yellow-400 rounded-full font-semibold shadow-[0_4px_0_#d97706] active:translate-y-1 active:shadow-none transition-all text-sm sm:text-base">🏠 Beranda</button>
-                <button onclick="navigate('materi')" class="whitespace-nowrap nav-btn px-4 py-2 bg-orange-300 hover:bg-orange-400 rounded-full font-semibold shadow-[0_4px_0_#c2410c] active:translate-y-1 active:shadow-none transition-all text-sm sm:text-base">📖 Materi</button>
-                <button onclick="navigate('belajar')" class="whitespace-nowrap nav-btn px-4 py-2 bg-green-300 hover:bg-green-400 rounded-full font-semibold shadow-[0_4px_0_#166534] active:translate-y-1 active:shadow-none transition-all text-sm sm:text-base">🍎 Simulasi</button>
-                <button onclick="navigate('tabel')" class="whitespace-nowrap nav-btn px-4 py-2 bg-purple-300 hover:bg-purple-400 rounded-full font-semibold shadow-[0_4px_0_#5b21b6] active:translate-y-1 active:shadow-none transition-all text-sm sm:text-base">🔢 Tabel</button>
-                <button onclick="navigate('kuis')" class="whitespace-nowrap nav-btn px-4 py-2 bg-pink-300 hover:bg-pink-400 rounded-full font-semibold shadow-[0_4px_0_#9d174d] active:translate-y-1 active:shadow-none transition-all text-sm sm:text-base">🎮 Kuis</button>
-                <button onclick="navigate('puzzle')" class="whitespace-nowrap nav-btn px-4 py-2 bg-cyan-300 hover:bg-cyan-400 rounded-full font-semibold shadow-[0_4px_0_#0891b2] active:translate-y-1 active:shadow-none transition-all text-sm sm:text-base">🧩 Puzzle</button>
-                <button onclick="navigate('cerita')" class="whitespace-nowrap nav-btn px-4 py-2 bg-rose-300 hover:bg-rose-400 rounded-full font-semibold shadow-[0_4px_0_#9f1239] active:translate-y-1 active:shadow-none transition-all text-sm sm:text-base">📝 Cerita</button>
+
+            <!-- Bagian Menu Navigasi Kapsul Rapi -->
+            <div class="flex items-center gap-1 sm:gap-1.5 bg-slate-100/90 p-1.5 rounded-2xl border-2 border-slate-200/80 w-full lg:w-auto overflow-x-auto justify-start lg:justify-center shadow-inner">
+                <button id="nav-home" onclick="navigate('home')" class="whitespace-nowrap nav-btn active-nav px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5">
+                    <span class="text-base">🏠</span> Beranda
+                </button>
+                <button id="nav-materi" onclick="navigate('materi')" class="whitespace-nowrap nav-btn px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5">
+                    <span class="text-base">📖</span> Materi
+                </button>
+                <button id="nav-belajar" onclick="navigate('belajar')" class="whitespace-nowrap nav-btn px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5">
+                    <span class="text-base">🍎</span> Simulasi
+                </button>
+                <button id="nav-tabel" onclick="navigate('tabel')" class="whitespace-nowrap nav-btn px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5">
+                    <span class="text-base">🔢</span> Tabel
+                </button>
+                <button id="nav-kuis" onclick="navigate('kuis')" class="whitespace-nowrap nav-btn px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5">
+                    <span class="text-base">🎮</span> Kuis
+                </button>
+                <button id="nav-puzzle" onclick="navigate('puzzle')" class="whitespace-nowrap nav-btn px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5">
+                    <span class="text-base">🧩</span> Puzzle
+                </button>
+                <button id="nav-cerita" onclick="navigate('cerita')" class="whitespace-nowrap nav-btn px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5">
+                    <span class="text-base">📝</span> Cerita
+                </button>
             </div>
+
+            <!-- Tombol Suara (Tampil di Desktop) -->
+            <button id="soundToggleBtn" onclick="toggleSound()" class="hidden lg:flex px-3.5 py-2 bg-sky-50 hover:bg-sky-100 text-sky-800 rounded-xl font-bold text-xs border-2 border-sky-200 shadow-sm active:scale-95 transition-all items-center gap-1.5 flex-shrink-0" title="Atur Suara Tombol">
+                <span id="soundIcon" class="soundIconEl text-base">🔊</span>
+                <span id="soundText" class="soundTextEl">Suara: Aktif</span>
+            </button>
         </div>
     </nav>
 
     <main class="flex-grow container max-w-6xl mx-auto p-4 sm:p-6 mb-10">
         
-        <!-- SECTION: BERANDA -->
-        <section id="home" class="page-section active pt-6">
-            <div class="text-center mb-10">
-                <h1 class="text-3xl sm:text-5xl font-bold text-blue-700 mb-4">Selamat Datang di SPA Perkalian!</h1>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Mari belajar perkalian dengan cara yang mudah, rapi, dan menyenangkan. Silakan pilih menu di bawah ini untuk mulai belajar!</p>
+        <!-- ========================================== -->
+        <!-- SECTION: BERANDA                           -->
+        <!-- ========================================== -->
+        <section id="home" class="page-section active pt-2">
+            <!-- Hero Banner Ceria -->
+            <div class="bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-600 rounded-3xl p-6 sm:p-10 text-white shadow-xl border-4 border-sky-300 mb-8 relative overflow-hidden">
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="text-center md:text-left max-w-xl">
+                        <span class="bg-yellow-400 text-yellow-950 font-bold px-4 py-1 rounded-full text-sm inline-block mb-3 shadow-sm">✨ Media Belajar Interaktif Kelas 3 SD</span>
+                        <h1 class="text-3xl sm:text-5xl font-bold mb-3 leading-tight">Belajar Perkalian Jadi Super Seru! 🚀</h1>
+                        <p class="text-sky-100 text-base sm:text-lg mb-6">Ayo pilih menu di bawah ini untuk mulai petualangan belajar perkalianmu!</p>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                            <button onclick="navigate('materi')" class="px-6 py-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-950 font-bold rounded-2xl shadow-[0_4px_0_#b45309] active:translate-y-1 active:shadow-none transition-all text-lg flex items-center gap-2">
+                                <span>📖</span> Mulai Belajar
+                            </button>
+                            <button onclick="navigate('belajar')" class="px-6 py-3 bg-white hover:bg-sky-50 text-sky-700 font-bold rounded-2xl shadow-[0_4px_0_#0369a1] active:translate-y-1 active:shadow-none transition-all text-lg flex items-center gap-2">
+                                <span>🍎</span> Coba Simulasi
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-7xl sm:text-8xl flex gap-2 bg-white/20 p-6 rounded-3xl backdrop-blur-sm border-2 border-white/30 shadow-inner">
+                        <span>🧮</span><span>🌟</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-3xl border-4 border-orange-300 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer flex flex-col items-center text-center justify-center min-h-[160px]" onclick="navigate('materi')">
-                    <div class="text-6xl mb-4 bg-orange-100 p-4 rounded-full">📖</div>
-                    <h3 class="text-2xl font-bold text-orange-700">Buku Materi</h3>
+            <!-- Pilihan Menu Grid Ringkas & Bersih (Tanpa Penjelasan Panjang) -->
+            <div class="mb-4 flex items-center justify-between">
+                <h2 class="text-2xl font-bold text-gray-800 flex items-center gap-2">🎯 Pilih Menu Belajar</h2>
+                <span class="text-sm text-gray-500 font-medium">Klik kartu untuk membuka!</span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <!-- Card 1: Materi -->
+                <div onclick="navigate('materi')" class="interactive-card bg-white p-6 rounded-3xl border-4 border-orange-300 shadow-[0_6px_0_#fdba74] hover:shadow-[0_8px_0_#fb923c] hover:-translate-y-1 active:translate-y-1 transition-all cursor-pointer flex flex-col items-center justify-center text-center min-h-[170px]">
+                    <div class="text-5xl mb-3 bg-orange-100 w-20 h-20 flex items-center justify-center rounded-2xl border-2 border-orange-300 shadow-inner">📖</div>
+                    <span class="text-xs font-bold bg-orange-100 text-orange-700 px-3 py-0.5 rounded-full mb-1.5">Langkah 1</span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-orange-700">CP/TP & Buku Materi</h3>
                 </div>
 
-                <div class="bg-white p-6 rounded-3xl border-4 border-green-300 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer flex flex-col items-center text-center justify-center min-h-[160px]" onclick="navigate('belajar')">
-                    <div class="text-6xl mb-4 bg-green-100 p-4 rounded-full">🍎</div>
-                    <h3 class="text-2xl font-bold text-green-700">Simulasi Belajar</h3>
+                <!-- Card 2: Simulasi -->
+                <div onclick="navigate('belajar')" class="interactive-card bg-white p-6 rounded-3xl border-4 border-emerald-300 shadow-[0_6px_0_#6ee7b7] hover:shadow-[0_8px_0_#34d399] hover:-translate-y-1 active:translate-y-1 transition-all cursor-pointer flex flex-col items-center justify-center text-center min-h-[170px]">
+                    <div class="text-5xl mb-3 bg-emerald-100 w-20 h-20 flex items-center justify-center rounded-2xl border-2 border-emerald-300 shadow-inner">🍎</div>
+                    <span class="text-xs font-bold bg-emerald-100 text-emerald-700 px-3 py-0.5 rounded-full mb-1.5">Langkah 2</span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-emerald-700">Simulasi Benda</h3>
                 </div>
 
-                <div class="bg-white p-6 rounded-3xl border-4 border-purple-300 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer flex flex-col items-center text-center justify-center min-h-[160px]" onclick="navigate('tabel')">
-                    <div class="text-6xl mb-4 bg-purple-100 p-4 rounded-full">🔢</div>
-                    <h3 class="text-2xl font-bold text-purple-700">Tabel Pintar</h3>
+                <!-- Card 3: Tabel -->
+                <div onclick="navigate('tabel')" class="interactive-card bg-white p-6 rounded-3xl border-4 border-purple-300 shadow-[0_6px_0_#d8b4fe] hover:shadow-[0_8px_0_#c084fc] hover:-translate-y-1 active:translate-y-1 transition-all cursor-pointer flex flex-col items-center justify-center text-center min-h-[170px]">
+                    <div class="text-5xl mb-3 bg-purple-100 w-20 h-20 flex items-center justify-center rounded-2xl border-2 border-purple-300 shadow-inner">🔢</div>
+                    <span class="text-xs font-bold bg-purple-100 text-purple-700 px-3 py-0.5 rounded-full mb-1.5">Langkah 3</span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-purple-700">Tabel Perkalian</h3>
                 </div>
 
-                <div class="bg-white p-6 rounded-3xl border-4 border-pink-300 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer flex flex-col items-center text-center justify-center min-h-[160px]" onclick="navigate('kuis')">
-                    <div class="text-6xl mb-4 bg-pink-100 p-4 rounded-full">🎮</div>
-                    <h3 class="text-2xl font-bold text-pink-700">Kuis Seru</h3>
+                <!-- Card 4: Kuis -->
+                <div onclick="navigate('kuis')" class="interactive-card bg-white p-6 rounded-3xl border-4 border-pink-300 shadow-[0_6px_0_#f9a8d4] hover:shadow-[0_8px_0_#f472b6] hover:-translate-y-1 active:translate-y-1 transition-all cursor-pointer flex flex-col items-center justify-center text-center min-h-[170px]">
+                    <div class="text-5xl mb-3 bg-pink-100 w-20 h-20 flex items-center justify-center rounded-2xl border-2 border-pink-300 shadow-inner">🎮</div>
+                    <span class="text-xs font-bold bg-pink-100 text-pink-700 px-3 py-0.5 rounded-full mb-1.5">Latihan 1</span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-pink-700">Kuis Interaktif</h3>
                 </div>
 
-                <div class="bg-white p-6 rounded-3xl border-4 border-cyan-300 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer flex flex-col items-center text-center justify-center min-h-[160px]" onclick="navigate('puzzle')">
-                    <div class="text-6xl mb-4 bg-cyan-100 p-4 rounded-full">🧩</div>
-                    <h3 class="text-2xl font-bold text-cyan-700">Puzzle Jodohkan</h3>
+                <!-- Card 5: Puzzle -->
+                <div onclick="navigate('puzzle')" class="interactive-card bg-white p-6 rounded-3xl border-4 border-cyan-300 shadow-[0_6px_0_#67e8f9] hover:shadow-[0_8px_0_#22d3ee] hover:-translate-y-1 active:translate-y-1 transition-all cursor-pointer flex flex-col items-center justify-center text-center min-h-[170px]">
+                    <div class="text-5xl mb-3 bg-cyan-100 w-20 h-20 flex items-center justify-center rounded-2xl border-2 border-cyan-300 shadow-inner">🧩</div>
+                    <span class="text-xs font-bold bg-cyan-100 text-cyan-700 px-3 py-0.5 rounded-full mb-1.5">Latihan 2</span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-cyan-700">Puzzle Jodohkan</h3>
                 </div>
 
-                <div class="bg-white p-6 rounded-3xl border-4 border-rose-300 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer flex flex-col items-center text-center justify-center min-h-[160px]" onclick="navigate('cerita')">
-                    <div class="text-6xl mb-4 bg-rose-100 p-4 rounded-full">📝</div>
-                    <h3 class="text-2xl font-bold text-rose-700">Soal Cerita</h3>
+                <!-- Card 6: Cerita -->
+                <div onclick="navigate('cerita')" class="interactive-card bg-white p-6 rounded-3xl border-4 border-rose-300 shadow-[0_6px_0_#fda4af] hover:shadow-[0_8px_0_#fb7185] hover:-translate-y-1 active:translate-y-1 transition-all cursor-pointer flex flex-col items-center justify-center text-center min-h-[170px]">
+                    <div class="text-5xl mb-3 bg-rose-100 w-20 h-20 flex items-center justify-center rounded-2xl border-2 border-rose-300 shadow-inner">📝</div>
+                    <span class="text-xs font-bold bg-rose-100 text-rose-700 px-3 py-0.5 rounded-full mb-1.5">Latihan 3</span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-rose-700">Soal Cerita</h3>
                 </div>
             </div>
 
             <!-- Profil Pengembang -->
             <div class="mt-12 bg-white p-6 sm:p-8 rounded-3xl border-4 border-indigo-300 shadow-xl max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
                 <div class="relative flex-shrink-0">
-                    <img src="https://iili.io/nwBRA22.md.jpg" alt="Fikrur Rosyid" class="w-40 h-40 sm:w-48 sm:h-48 object-cover rounded-full border-4 border-indigo-500 shadow-lg">
-                    <div class="absolute bottom-2 right-2 text-3xl sm:text-4xl bg-white rounded-full p-2 shadow-lg border border-gray-100">🎓</div>
+                    <img src="https://iili.io/nwBRA22.md.jpg" alt="Fikrur Rosyid" class="w-36 h-36 sm:w-44 sm:h-44 object-cover rounded-full border-4 border-indigo-500 shadow-lg">
+                    <div class="absolute bottom-1 right-1 text-3xl bg-white rounded-full p-2 shadow-md border-2 border-indigo-200">🎓</div>
                 </div>
                 <div class="text-center md:text-left w-full">
-                    <h3 class="text-3xl font-bold text-gray-800 mb-2">Fikrur Rosyid</h3>
-                    <p class="text-lg text-indigo-600 font-bold mb-4">Mahasiswa PGMI UIN Madura</p>
+                    <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Profil Pengembang</span>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-gray-800 mt-1">Fikrur Rosyid</h3>
+                    <p class="text-base sm:text-lg text-indigo-600 font-bold mb-4">Mahasiswa PGMI UIN Madura</p>
                     
-                    <div class="bg-indigo-50 p-5 rounded-2xl border-2 border-indigo-200 text-left shadow-inner">
+                    <div class="bg-indigo-50/80 p-4 sm:p-5 rounded-2xl border-2 border-indigo-200 text-left shadow-inner">
                         <table class="w-full text-gray-700 text-sm sm:text-base">
                             <tbody>
-                                <tr class="border-b border-indigo-200">
-                                    <td class="py-2 font-bold w-1/3 text-indigo-800">NIM</td>
-                                    <td class="py-2">: 24381051042</td>
+                                <tr class="border-b border-indigo-200/60">
+                                    <td class="py-2 font-bold w-1/3 text-indigo-900">NIM</td>
+                                    <td class="py-2 font-medium">: 24381051042</td>
                                 </tr>
-                                <tr class="border-b border-indigo-200">
-                                    <td class="py-2 font-bold text-indigo-800">Program Studi</td>
-                                    <td class="py-2">: Pendidikan Guru Madrasah Ibtidaiyah</td>
+                                <tr class="border-b border-indigo-200/60">
+                                    <td class="py-2 font-bold text-indigo-900">Program Studi</td>
+                                    <td class="py-2 font-medium">: Pendidikan Guru Madrasah Ibtidaiyah</td>
                                 </tr>
                                 <tr>
-                                    <td class="py-2 font-bold text-indigo-800 align-top">Tujuan Produk</td>
-                                    <td class="py-2 leading-relaxed">: Pengembangan Media Single Pack Application (SPA) untuk Meningkatkan Kemampuan Perkalian Siswa Kelas III di SDN Gugul 1 Pamekasan.</td>
+                                    <td class="py-2 font-bold text-indigo-900 align-top">Tujuan Produk</td>
+                                    <td class="py-2 leading-relaxed font-medium">: Pengembangan Media Single Page Application (SPA) untuk Meningkatkan Kemampuan Perkalian Siswa Kelas III di SDN Gugul 1 Pamekasan.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -183,131 +305,294 @@
             </div>
         </section>
 
-        <!-- SECTION: MATERI -->
-        <section id="materi" class="page-section pt-4">
-            <h2 class="text-3xl sm:text-4xl font-bold text-orange-600 text-center mb-6">Konsep Dasar Perkalian 📖</h2>
+        <!-- ========================================== -->
+        <!-- SECTION: MATERI (DENGAN CP & TP KELAS 3)   -->
+        <!-- ========================================== -->
+        <section id="materi" class="page-section pt-2">
+            <div class="text-center mb-6">
+                <span class="bg-orange-100 text-orange-700 font-bold px-4 py-1 rounded-full text-sm border border-orange-300">Kurikulum Merdeka - Fase B (Kelas 3 SD/MI)</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-orange-600 mt-2">Buku Materi Perkalian 📖</h2>
+                <p class="text-gray-600 mt-1">Yuk, baca dulu target belajar kita hari ini sebelum mulai berlatih!</p>
+            </div>
+
+            <!-- KOTAK CAPAIAN PEMBELAJARAN (CP) & TUJUAN PEMBELAJARAN (TP) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+                <!-- Capaian Pembelajaran (CP) -->
+                <div class="lg:col-span-5 bg-gradient-to-br from-sky-50 to-blue-100 p-6 rounded-3xl border-4 border-sky-400 shadow-lg flex flex-col justify-between relative overflow-hidden">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="text-4xl bg-white p-3 rounded-2xl shadow-sm border-2 border-sky-300">🏆</div>
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-200 px-2.5 py-0.5 rounded-full">Fase B - Elemen Bilangan</span>
+                                <h3 class="text-xl sm:text-2xl font-bold text-sky-900">Capaian Pembelajaran (CP)</h3>
+                            </div>
+                        </div>
+                        <div class="bg-white/90 p-4 rounded-2xl border-2 border-sky-200 text-gray-700 leading-relaxed text-sm sm:text-base shadow-sm">
+                            <p class="mb-2">
+                                Peserta didik dapat melakukan operasi <strong>perkalian dan pembagian bilangan cacah sampai 100</strong> menggunakan benda-benda konkret, gambar, dan simbol matematika.
+                            </p>
+                            <p class="text-sky-800 font-semibold text-xs sm:text-sm bg-sky-50 p-2.5 rounded-xl border border-sky-200">
+                                💡 Artinya: Anak-anak hebat Kelas 3 bisa menghitung perkalian hingga hasil 100 dengan bantuan gambar benda maupun angka!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tujuan Pembelajaran (TP) -->
+                <div class="lg:col-span-7 bg-gradient-to-br from-amber-50 to-orange-100 p-6 rounded-3xl border-4 border-amber-400 shadow-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="text-4xl bg-white p-3 rounded-2xl shadow-sm border-2 border-amber-300">🎯</div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-200 px-2.5 py-0.5 rounded-full">Target Belajar Kita</span>
+                            <h3 class="text-xl sm:text-2xl font-bold text-amber-900">Tujuan Pembelajaran (TP)</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-amber-900 mb-3 font-medium">Setelah belajar dengan aplikasi ini, kamu diharapkan mampu:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-amber-200 flex items-start gap-3 shadow-sm">
+                            <span class="bg-amber-400 text-amber-950 font-bold w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                            <p class="text-sm text-gray-700">Memahami konsep perkalian sebagai <strong>penjumlahan berulang</strong> melalui gambar benda konkret.</p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-amber-200 flex items-start gap-3 shadow-sm">
+                            <span class="bg-amber-400 text-amber-950 font-bold w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                            <p class="text-sm text-gray-700">Menghitung hasil perkalian bilangan cacah yang hasilnya <strong>sampai 100</strong> dengan tepat.</p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-amber-200 flex items-start gap-3 shadow-sm">
+                            <span class="bg-amber-400 text-amber-950 font-bold w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                            <p class="text-sm text-gray-700">Mengenal sifat <strong>pertukaran (komutatif)</strong> serta perkalian dengan angka <strong>0 dan 1</strong>.</p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-amber-200 flex items-start gap-3 shadow-sm">
+                            <span class="bg-amber-400 text-amber-950 font-bold w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">4</span>
+                            <p class="text-sm text-gray-700">Menyelesaikan <strong>soal cerita sehari-hari</strong> yang berkaitan dengan perkalian.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISI MATERI INTI -->
             <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-orange-300">
-                <div class="flex flex-col md:flex-row items-center gap-8 mb-8">
-                    <div class="w-full md:w-1/3 flex justify-center">
-                        <div class="text-8xl bg-orange-100 p-6 rounded-full border-4 border-orange-400">💡</div>
+                <!-- Konsep 1: Pengertian & Rumus Wadah x Isi -->
+                <div class="flex flex-col md:flex-row items-center gap-6 mb-8 bg-orange-50 p-6 rounded-3xl border-2 border-orange-200">
+                    <div class="w-full md:w-1/4 flex justify-center">
+                        <div class="text-7xl bg-white p-6 rounded-3xl border-4 border-orange-400 shadow-md">💡</div>
                     </div>
-                    <div class="w-full md:w-2/3">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Apa itu Perkalian?</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                            Perkalian adalah <strong class="text-orange-600">Penjumlahan yang Berulang</strong>. <br>
-                            Artinya, kita menjumlahkan angka yang sama secara terus menerus sesuai dengan jumlah kelompoknya.
+                    <div class="w-full md:w-3/4 text-center md:text-left">
+                        <span class="bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full">Konsep Utama</span>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-gray-800 mt-1 mb-2">Apa itu Perkalian?</h3>
+                        <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-4">
+                            Perkalian adalah <strong class="text-orange-600 underline decoration-wavy">Penjumlahan yang Berulang</strong> dengan angka yang sama. Supaya tidak tertukar, ingat rumus mudah ini ya:
                         </p>
+                        <div class="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 bg-white px-5 py-3 rounded-2xl border-2 border-orange-300 shadow-sm text-base sm:text-xl font-bold">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-xl border border-blue-300">📦 Banyak Kotak</span>
+                            <span class="text-orange-600 text-2xl">×</span>
+                            <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-xl border border-emerald-300">🍩 Isi Tiap Kotak</span>
+                            <span class="text-gray-600">=</span>
+                            <span class="bg-amber-100 text-amber-900 px-3 py-1 rounded-xl border border-amber-300">🌟 Jumlah Semua</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-blue-50 p-6 rounded-2xl border-2 border-blue-200 mb-6">
-                    <h4 class="text-xl font-bold text-blue-800 mb-3">Contoh Cerita:</h4>
-                    <p class="text-lg text-gray-700 mb-4">Ibu membeli <strong>3 kotak</strong> donat. Setiap kotak berisi <strong>4 buah</strong> donat. Berapa jumlah semua donat?</p>
-                    
-                    <div class="flex justify-center gap-6 mb-4 flex-wrap">
-                        <div class="bg-white p-3 rounded-xl border-2 border-dashed border-gray-400 flex gap-1 text-2xl">🍩🍩🍩🍩</div>
-                        <div class="text-2xl font-bold flex items-center">+</div>
-                        <div class="bg-white p-3 rounded-xl border-2 border-dashed border-gray-400 flex gap-1 text-2xl">🍩🍩🍩🍩</div>
-                        <div class="text-2xl font-bold flex items-center">+</div>
-                        <div class="bg-white p-3 rounded-xl border-2 border-dashed border-gray-400 flex gap-1 text-2xl">🍩🍩🍩🍩</div>
-                    </div>
-                    
-                    <p class="text-center text-xl text-gray-700 mt-4">
-                        Jika ditulis dalam penjumlahan: <strong>4 + 4 + 4 = 12</strong>
+                <!-- Contoh Visual Donat -->
+                <div class="bg-sky-50 p-6 rounded-3xl border-2 border-sky-200 mb-8">
+                    <h4 class="text-xl font-bold text-sky-900 mb-2 flex items-center gap-2">
+                        <span>🍩</span> Contoh Mudah: Donat Ibu
+                    </h4>
+                    <p class="text-base sm:text-lg text-gray-700 mb-6">
+                        Ibu membeli <strong class="text-blue-700 bg-blue-100 px-2 py-0.5 rounded">3 kotak</strong> donat. Setiap kotak berisi <strong class="text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">4 buah</strong> donat. Berapa jumlah semua donat Ibu?
                     </p>
-                    <p class="text-center text-2xl text-blue-700 font-bold mt-2">
-                        Jika ditulis dalam perkalian: 3 x 4 = 12
-                    </p>
-                </div>
+                    
+                    <div class="flex justify-center items-center gap-3 sm:gap-5 mb-6 flex-wrap">
+                        <!-- Kotak 1 -->
+                        <div class="bg-white p-4 rounded-2xl border-4 border-dashed border-sky-400 text-center shadow-sm">
+                            <div class="text-xs font-bold text-sky-700 mb-1">Kotak 1</div>
+                            <div class="text-2xl sm:text-3xl tracking-widest">🍩🍩🍩🍩</div>
+                            <div class="mt-2 font-bold text-emerald-700 bg-emerald-50 rounded-lg py-0.5">Isi 4</div>
+                        </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <div class="bg-green-50 p-6 rounded-2xl border-2 border-green-200">
-                        <h4 class="text-xl font-bold text-green-800 mb-3">Sifat Pertukaran 🔄</h4>
-                        <p class="text-gray-700 mb-3">Posisi angka yang dikalikan boleh ditukar, lho! Hasilnya akan selalu sama.</p>
-                        <div class="flex justify-center items-center gap-4 text-lg sm:text-xl font-bold text-green-700 bg-white p-3 rounded-xl border border-green-200 shadow-sm text-center">
-                            <span>2 x 3 = 6</span>
-                            <span class="text-sm text-gray-500">Sama dengan</span>
-                            <span>3 x 2 = 6</span>
+                        <div class="text-3xl font-black text-sky-600">+</div>
+
+                        <!-- Kotak 2 -->
+                        <div class="bg-white p-4 rounded-2xl border-4 border-dashed border-sky-400 text-center shadow-sm">
+                            <div class="text-xs font-bold text-sky-700 mb-1">Kotak 2</div>
+                            <div class="text-2xl sm:text-3xl tracking-widest">🍩🍩🍩🍩</div>
+                            <div class="mt-2 font-bold text-emerald-700 bg-emerald-50 rounded-lg py-0.5">Isi 4</div>
+                        </div>
+
+                        <div class="text-3xl font-black text-sky-600">+</div>
+
+                        <!-- Kotak 3 -->
+                        <div class="bg-white p-4 rounded-2xl border-4 border-dashed border-sky-400 text-center shadow-sm">
+                            <div class="text-xs font-bold text-sky-700 mb-1">Kotak 3</div>
+                            <div class="text-2xl sm:text-3xl tracking-widest">🍩🍩🍩🍩</div>
+                            <div class="mt-2 font-bold text-emerald-700 bg-emerald-50 rounded-lg py-0.5">Isi 4</div>
                         </div>
                     </div>
                     
-                    <div class="bg-yellow-50 p-6 rounded-2xl border-2 border-yellow-200">
-                        <h4 class="text-xl font-bold text-yellow-800 mb-3">Aturan Angka 0 dan 1 ⭐</h4>
-                        <ul class="text-gray-700 space-y-4">
-                            <li class="flex items-start gap-3 bg-white p-3 rounded-xl border border-yellow-200 shadow-sm">
-                                <span class="text-2xl">1️⃣</span>
-                                <span class="text-sm sm:text-base">Semua angka yang dikalikan <strong>1</strong> hasilnya adalah angka itu sendiri. <br><span class="font-bold text-yellow-700 text-lg">5 x 1 = 5</span></span>
-                            </li>
-                            <li class="flex items-start gap-3 bg-white p-3 rounded-xl border border-yellow-200 shadow-sm">
-                                <span class="text-2xl">0️⃣</span>
-                                <span class="text-sm sm:text-base">Semua angka yang dikalikan <strong>0</strong> hasilnya selalu <strong>0</strong>. <br><span class="font-bold text-yellow-700 text-lg">8 x 0 = 0</span></span>
-                            </li>
-                        </ul>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                        <div class="bg-white p-4 rounded-2xl border-2 border-sky-200 text-center">
+                            <span class="text-xs font-bold text-gray-500 uppercase">Ditulis Penjumlahan Berulang:</span>
+                            <p class="text-2xl font-bold text-gray-800 mt-1">4 + 4 + 4 = 12</p>
+                            <span class="text-xs text-gray-500">(Angka 4 dijumlahkan sebanyak 3 kali)</span>
+                        </div>
+                        <div class="bg-blue-600 p-4 rounded-2xl border-2 border-blue-700 text-center text-white shadow-md">
+                            <span class="text-xs font-bold text-blue-200 uppercase">Ditulis Bentuk Perkalian:</span>
+                            <p class="text-3xl font-black mt-1">3 × 4 = 12</p>
+                            <span class="text-xs text-blue-100">(3 Kotak × 4 Donat = 12 Donat)</span>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Sifat Pertukaran & Aturan 0 dan 1 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Sifat Komutatif -->
+                    <div class="bg-emerald-50 p-6 rounded-3xl border-2 border-emerald-300 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xl font-bold text-emerald-900 mb-2 flex items-center gap-2">
+                                <span>🔄</span> Sifat Pertukaran (Komutatif)
+                            </h4>
+                            <p class="text-gray-700 text-sm sm:text-base mb-4">
+                                Meskipun urutan angka yang dikalikan ditukar posisinya, <strong>hasil akhirnya akan tetap sama!</strong>
+                            </p>
+                        </div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-emerald-200 shadow-sm text-center space-y-2">
+                            <div class="flex items-center justify-center gap-3 text-lg sm:text-xl font-bold">
+                                <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-xl">2 × 5 = 10</span>
+                                <span class="text-emerald-600">↔️</span>
+                                <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-xl">5 × 2 = 10</span>
+                            </div>
+                            <p class="text-xs text-gray-500">2+2+2+2+2 sama hasilnya dengan 5+5 yaitu 10!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Aturan Angka 0 dan 1 -->
+                    <div class="bg-amber-50 p-6 rounded-3xl border-2 border-amber-300">
+                        <h4 class="text-xl font-bold text-amber-900 mb-3 flex items-center gap-2">
+                            <span>⭐</span> Rahasia Angka 1 dan 0
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 bg-white p-3.5 rounded-2xl border-2 border-amber-200 shadow-sm">
+                                <span class="text-3xl">1️⃣</span>
+                                <div class="text-sm sm:text-base text-gray-700">
+                                    Angka berapa pun jika dikalikan <strong>1</strong>, hasilnya adalah <strong>angka itu sendiri</strong>.
+                                    <div class="font-bold text-amber-700 mt-0.5">Contoh: 7 × 1 = 7</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 bg-white p-3.5 rounded-2xl border-2 border-amber-200 shadow-sm">
+                                <span class="text-3xl">0️⃣</span>
+                                <div class="text-sm sm:text-base text-gray-700">
+                                    Angka berapa pun jika dikalikan <strong>0</strong>, hasilnya pasti selalu <strong>0</strong>!
+                                    <div class="font-bold text-amber-700 mt-0.5">Contoh: 9 × 0 = 0</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tombol Lanjut ke Simulasi -->
+                <div class="mt-8 text-center">
+                    <button onclick="navigate('belajar')" class="px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xl rounded-2xl shadow-[0_5px_0_#15803d] active:translate-y-1 active:shadow-none transition-all inline-flex items-center gap-2">
+                        <span>🍎</span> Sudah Paham! Ayo Coba Simulasi
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION: SIMULASI BELAJAR -->
-        <section id="belajar" class="page-section pt-4">
-            <h2 class="text-3xl sm:text-4xl font-bold text-green-600 text-center mb-6 animate__animated animate__fadeInDown">Simulasi Perkalian 🍎</h2>
-            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-green-300">
-                
-                <div class="flex flex-col md:flex-row justify-center gap-8 mb-8">
+        <!-- ========================================== -->
+        <!-- SECTION: SIMULASI BELAJAR                  -->
+        <!-- ========================================== -->
+        <section id="belajar" class="page-section pt-2">
+            <div class="text-center mb-6">
+                <span class="bg-emerald-100 text-emerald-700 font-bold px-4 py-1 rounded-full text-sm border border-emerald-300">Laboratorium Benda Konkret</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-emerald-600 mt-2">Simulasi Perkalian Interaktif 🍎</h2>
+                <p class="text-gray-600 mt-1">Tekan tombol <strong>(-)</strong> atau <strong>(+)</strong> untuk mengubah banyak kotak dan isinya!</p>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-emerald-300">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 items-center">
                     <!-- Kontrol Kelompok (Keranjang) -->
-                    <div class="bg-green-50 p-4 rounded-2xl border-2 border-green-200 text-center flex-1">
-                        <p class="text-lg font-bold text-green-800 mb-2">Jumlah Kelompok</p>
+                    <div class="bg-sky-50 p-5 rounded-3xl border-2 border-sky-300 text-center shadow-sm">
+                        <span class="text-xs font-bold uppercase text-sky-600 bg-sky-100 px-3 py-0.5 rounded-full">Angka Pertama</span>
+                        <p class="text-lg font-bold text-sky-900 mt-1 mb-3">📦 Jumlah Kotak</p>
                         <div class="flex items-center justify-center gap-4">
-                            <button onclick="updateSimulasi('keranjang', -1)" class="w-12 h-12 bg-red-400 text-white rounded-full font-bold text-2xl hover:bg-red-500 shadow-[0_4px_0_#b91c1c] active:translate-y-1 active:shadow-none transition-all">-</button>
-                            <span id="valKeranjang" class="text-4xl font-bold w-12 text-gray-800">3</span>
-                            <button onclick="updateSimulasi('keranjang', 1)" class="w-12 h-12 bg-blue-400 text-white rounded-full font-bold text-2xl hover:bg-blue-500 shadow-[0_4px_0_#1d4ed8] active:translate-y-1 active:shadow-none transition-all">+</button>
+                            <button onclick="updateSimulasi('keranjang', -1)" class="w-12 h-12 bg-rose-400 hover:bg-rose-500 text-white rounded-2xl font-bold text-2xl shadow-[0_4px_0_#be123c] active:translate-y-1 active:shadow-none transition-all">-</button>
+                            <span id="valKeranjang" class="text-4xl font-black w-14 text-sky-800 bg-white py-1 rounded-xl border-2 border-sky-200">3</span>
+                            <button onclick="updateSimulasi('keranjang', 1)" class="w-12 h-12 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-bold text-2xl shadow-[0_4px_0_#0369a1] active:translate-y-1 active:shadow-none transition-all">+</button>
                         </div>
+                    </div>
+
+                    <!-- Tombol Ganti Benda di Tengah -->
+                    <div class="flex flex-col items-center justify-center gap-2">
+                        <div class="text-sm font-bold text-gray-500">Benda Saat Ini:</div>
+                        <button onclick="gantiBenda()" class="px-6 py-3.5 bg-amber-400 hover:bg-amber-300 text-amber-950 font-bold text-lg rounded-2xl shadow-[0_4px_0_#b45309] active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 border-2 border-amber-500">
+                            <span id="currentBendaPreview" class="text-2xl">🍎</span>
+                            <span>🔄 Ganti Benda</span>
+                        </button>
                     </div>
                     
                     <!-- Kontrol Isi (Benda) -->
-                    <div class="bg-green-50 p-4 rounded-2xl border-2 border-green-200 text-center flex-1">
-                        <p class="text-lg font-bold text-green-800 mb-2">Isi Tiap Kelompok</p>
+                    <div class="bg-emerald-50 p-5 rounded-3xl border-2 border-emerald-300 text-center shadow-sm">
+                        <span class="text-xs font-bold uppercase text-emerald-700 bg-emerald-100 px-3 py-0.5 rounded-full">Angka Kedua</span>
+                        <p class="text-lg font-bold text-emerald-900 mt-1 mb-3">🍎 Isi Tiap Kotak</p>
                         <div class="flex items-center justify-center gap-4">
-                            <button onclick="updateSimulasi('apel', -1)" class="w-12 h-12 bg-red-400 text-white rounded-full font-bold text-2xl hover:bg-red-500 shadow-[0_4px_0_#b91c1c] active:translate-y-1 active:shadow-none transition-all">-</button>
-                            <span id="valApel" class="text-4xl font-bold w-12 text-gray-800">4</span>
-                            <button onclick="updateSimulasi('apel', 1)" class="w-12 h-12 bg-blue-400 text-white rounded-full font-bold text-2xl hover:bg-blue-500 shadow-[0_4px_0_#1d4ed8] active:translate-y-1 active:shadow-none transition-all">+</button>
+                            <button onclick="updateSimulasi('apel', -1)" class="w-12 h-12 bg-rose-400 hover:bg-rose-500 text-white rounded-2xl font-bold text-2xl shadow-[0_4px_0_#be123c] active:translate-y-1 active:shadow-none transition-all">-</button>
+                            <span id="valApel" class="text-4xl font-black w-14 text-emerald-800 bg-white py-1 rounded-xl border-2 border-emerald-200">4</span>
+                            <button onclick="updateSimulasi('apel', 1)" class="w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl font-bold text-2xl shadow-[0_4px_0_#15803d] active:translate-y-1 active:shadow-none transition-all">+</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tombol Ganti Benda -->
-                <div class="text-center mb-8">
-                    <button onclick="gantiBenda()" class="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold text-xl rounded-full shadow-[0_4px_0_#ca8a04] active:translate-y-1 active:shadow-none transition-all">
-                        🔄 Ganti Benda
-                    </button>
-                </div>
-
                 <!-- Visual Area -->
-                <div id="visualContainer" class="flex flex-wrap justify-center gap-4 mb-8 min-h-[140px] p-6 bg-gray-50 rounded-2xl border-4 border-dashed border-gray-300">
-                    <!-- Baskets will be injected here via JavaScript -->
+                <div class="mb-8">
+                    <div class="text-center text-sm font-bold text-gray-500 mb-2">👇 Perhatikan Gambar Kotak di Bawah Ini 👇</div>
+                    <div id="visualContainer" class="flex flex-wrap justify-center gap-4 min-h-[150px] p-6 bg-sky-50/70 rounded-3xl border-4 border-dashed border-sky-300">
+                        <!-- Baskets will be injected here via JavaScript -->
+                    </div>
                 </div>
 
                 <!-- Result Area -->
-                <div class="text-center bg-blue-50 p-6 rounded-2xl border-4 border-blue-200 shadow-inner">
-                    <p class="text-xl font-bold text-gray-600 mb-2">Bentuk Penjumlahan Berulang:</p>
-                    <p id="textPenjumlahan" class="text-3xl sm:text-4xl font-bold text-blue-700 mb-4 tracking-wider">4 + 4 + 4 = 12</p>
-                    
-                    <p class="text-xl font-bold text-gray-600 mb-2 mt-6">Bentuk Perkalian:</p>
-                    <p id="textPerkalian" class="text-5xl sm:text-6xl font-black text-green-600 animate__animated">3 x 4 = 12</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-amber-50 p-6 rounded-3xl border-4 border-amber-200 text-center flex flex-col justify-center">
+                        <span class="text-sm font-bold text-amber-800 uppercase tracking-wider mb-1">1. Bentuk Penjumlahan Berulang:</span>
+                        <p id="textPenjumlahan" class="text-2xl sm:text-3xl font-bold text-amber-900 tracking-wider break-words">4 + 4 + 4 = 12</p>
+                        <p id="textPenjelasanSimulasi" class="text-xs sm:text-sm text-amber-700 mt-2">Ada 3 kotak, masing-masing berisi 4 benda</p>
+                    </div>
+                    <div class="bg-emerald-500 p-6 rounded-3xl border-4 border-emerald-600 text-center text-white shadow-lg flex flex-col justify-center">
+                        <span class="text-sm font-bold text-emerald-100 uppercase tracking-wider mb-1">2. Bentuk Kalimat Perkalian:</span>
+                        <p id="textPerkalian" class="text-4xl sm:text-5xl font-black animate__animated">3 × 4 = 12</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION: TABEL PINTAR -->
-        <section id="tabel" class="page-section pt-4">
-            <h2 class="text-3xl sm:text-4xl font-bold text-purple-600 text-center mb-4 animate__animated animate__fadeInDown">Tabel Perkalian Pintar 🔢</h2>
-            <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-xl border-4 border-purple-300 flex flex-col items-center">
-                <p class="text-center text-gray-600 mb-4">Klik salah satu angka untuk melihat penjumlahannya!</p>
-                
-                <div class="overflow-x-auto w-full max-w-2xl">
-                    <table class="w-full text-center border-collapse">
+        <!-- ========================================== -->
+        <!-- SECTION: TABEL PINTAR                      -->
+        <!-- ========================================== -->
+        <section id="tabel" class="page-section pt-2">
+            <div class="text-center mb-6">
+                <span class="bg-purple-100 text-purple-700 font-bold px-4 py-1 rounded-full text-sm border border-purple-300">Perkalian 1 Sampai 100</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-purple-600 mt-2">Tabel Perkalian Pintar 🔢</h2>
+                <p class="text-gray-600 mt-1">Klik salah satu kotak angka pada tabel untuk melihat cara menghitungnya!</p>
+            </div>
+
+            <div class="bg-white p-4 sm:p-8 rounded-3xl shadow-xl border-4 border-purple-300 flex flex-col lg:flex-row items-center lg:items-start gap-8 justify-center">
+                <!-- Detail Box di Atas/Samping agar langsung terlihat -->
+                <div class="w-full lg:w-1/3 order-1 lg:order-2">
+                    <div id="tabelDetailBox" class="p-6 bg-gradient-to-br from-purple-100 to-fuchsia-100 border-4 border-purple-400 rounded-3xl text-center shadow-md animate__animated">
+                        <span class="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Detail Perkalian</span>
+                        <h3 class="text-4xl font-black text-purple-800 mt-3 mb-2" id="tabelDetailTitle">3 × 4 = 12</h3>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-purple-200 mt-3">
+                            <span class="text-xs font-bold text-gray-500 block mb-1">Bentuk Penjumlahan Berulang:</span>
+                            <p class="text-lg font-bold text-purple-700 break-words" id="tabelDetailPenjumlahan">4 + 4 + 4 = 12</p>
+                        </div>
+                        <p class="text-xs text-purple-600 mt-3 font-medium">💡 Sentuh angka lain di tabel untuk mengganti!</p>
+                    </div>
+                </div>
+
+                <!-- Tabel Grid -->
+                <div class="overflow-x-auto w-full lg:w-2/3 order-2 lg:order-1">
+                    <table class="w-full text-center border-collapse rounded-2xl overflow-hidden shadow-sm">
                         <thead>
-                            <tr id="tabelHeader" class="bg-purple-200 font-bold text-purple-800">
+                            <tr id="tabelHeader" class="bg-purple-600 font-bold text-white">
                                 <!-- Headers injected via JS -->
                             </tr>
                         </thead>
@@ -316,49 +601,50 @@
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Detail Box -->
-                <div id="tabelDetailBox" class="mt-6 p-4 bg-purple-100 border-2 border-purple-400 rounded-xl w-full max-w-md text-center hidden animate__animated animate__zoomIn">
-                    <h3 class="text-2xl font-bold text-purple-700" id="tabelDetailTitle">3 x 4 = 12</h3>
-                    <p class="text-lg text-gray-700 mt-2" id="tabelDetailPenjumlahan">Artinya: 4 + 4 + 4 = 12</p>
-                </div>
             </div>
         </section>
 
-        <!-- SECTION: KUIS INTERAKTIF -->
-        <section id="kuis" class="page-section pt-4">
-            <h2 class="text-3xl sm:text-4xl font-bold text-pink-600 text-center mb-4 animate__animated animate__fadeInDown">Kuis Seru! 🎮</h2>
+        <!-- ========================================== -->
+        <!-- SECTION: KUIS INTERAKTIF                   -->
+        <!-- ========================================== -->
+        <section id="kuis" class="page-section pt-2">
+            <div class="text-center mb-6">
+                <span class="bg-pink-100 text-pink-700 font-bold px-4 py-1 rounded-full text-sm border border-pink-300">Uji Kemampuanmu</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-pink-600 mt-2">Kuis Perkalian Seru! 🎮</h2>
+            </div>
             
             <!-- Mode Selection -->
-            <div id="kuisModeSelection" class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-pink-300 text-center">
-                <h3 class="text-2xl font-bold text-gray-700 mb-6">Pilih Mode Permainanmu!</h3>
-                <div class="flex flex-col sm:flex-row justify-center gap-6">
-                    <button onclick="startKuis('santai')" class="flex flex-col items-center bg-blue-100 p-6 rounded-2xl border-4 border-blue-400 shadow-lg hover:scale-105 transition-transform w-full sm:w-1/2">
-                        <span class="text-5xl mb-2">🐢</span>
-                        <span class="text-2xl font-bold text-blue-700">Mode Terbimbing</span>
-                        <span class="text-sm text-gray-600 mt-2">Bantu aku dengan gambar benda-benda lucu! (Cocok untuk belajar santai)</span>
+            <div id="kuisModeSelection" class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-pink-300 text-center max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-gray-700 mb-2">Pilih Mode Permainanmu!</h3>
+                <p class="text-gray-500 mb-6 text-sm sm:text-base">Setiap kuis terdiri dari 5 soal. Jawab dengan benar untuk mendapat skor 100!</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <button onclick="startKuis('santai')" class="flex flex-col items-center bg-sky-50 hover:bg-sky-100 p-6 rounded-3xl border-4 border-sky-400 shadow-[0_6px_0_#0284c7] active:translate-y-1 active:shadow-none transition-all text-center">
+                        <span class="text-6xl mb-3 bg-white p-4 rounded-2xl border-2 border-sky-200 shadow-sm">🐢</span>
+                        <span class="text-2xl font-bold text-sky-800">Mode Terbimbing</span>
+                        <span class="text-sm text-gray-600 mt-2">Dilengkapi <strong>bantuan gambar benda</strong> di setiap soal! Cocok untuk latihan awal.</span>
                     </button>
-                    <button onclick="startKuis('tantangan')" class="flex flex-col items-center bg-red-100 p-6 rounded-2xl border-4 border-red-400 shadow-lg hover:scale-105 transition-transform w-full sm:w-1/2">
-                        <span class="text-5xl mb-2">🚀</span>
-                        <span class="text-2xl font-bold text-red-700">Mode Tantangan</span>
-                        <span class="text-sm text-gray-600 mt-2">Aku sudah jago! Berikan soal langsung! (Tanpa bantuan gambar)</span>
+                    <button onclick="startKuis('tantangan')" class="flex flex-col items-center bg-rose-50 hover:bg-rose-100 p-6 rounded-3xl border-4 border-rose-400 shadow-[0_6px_0_#e11d48] active:translate-y-1 active:shadow-none transition-all text-center">
+                        <span class="text-6xl mb-3 bg-white p-4 rounded-2xl border-2 border-rose-200 shadow-sm">🚀</span>
+                        <span class="text-2xl font-bold text-rose-800">Mode Tantangan</span>
+                        <span class="text-sm text-gray-600 mt-2">Tanpa bantuan gambar! Uji kecepatan menghafal dan menghitung perkalianmu!</span>
                     </button>
                 </div>
             </div>
 
             <!-- Quiz Play Area -->
-            <div id="kuisPlayArea" class="hidden bg-white p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-pink-300">
-                <div class="flex justify-between items-center mb-6 border-b-2 border-pink-100 pb-4">
-                    <div class="text-xl font-bold text-gray-500" id="kuisProgress">Soal 1 / 5</div>
-                    <div class="text-xl font-bold text-pink-500">Skor: <span id="kuisSkor">0</span></div>
-                    <button onclick="endKuis()" class="px-3 py-1 bg-gray-200 rounded text-sm hover:bg-gray-300">Keluar</button>
+            <div id="kuisPlayArea" class="hidden bg-white p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-pink-300 max-w-4xl mx-auto">
+                <div class="flex flex-wrap justify-between items-center gap-2 mb-6 border-b-2 border-pink-100 pb-4">
+                    <div class="bg-pink-100 text-pink-800 px-4 py-1.5 rounded-full text-lg font-bold" id="kuisProgress">Soal 1 / 5</div>
+                    <div class="bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-lg font-bold border border-amber-300">⭐ Skor: <span id="kuisSkor">0</span></div>
+                    <button onclick="endKuis()" class="px-4 py-1.5 bg-gray-200 hover:bg-gray-300 rounded-full text-sm font-bold text-gray-700">Keluar</button>
                 </div>
 
-                <div class="text-center mb-8">
-                    <h3 class="text-4xl sm:text-6xl font-bold text-gray-800 mb-6" id="kuisPertanyaan">3 x 5 = ?</h3>
+                <div class="text-center mb-6">
+                    <span class="text-xs font-bold uppercase text-gray-400 tracking-wider">Berapakah Hasil Dari:</span>
+                    <h3 class="text-5xl sm:text-6xl font-black text-gray-800 mt-1 mb-6" id="kuisPertanyaan">3 × 5 = ?</h3>
                     
                     <!-- Visual Hint Area (Only for Santai Mode) -->
-                    <div id="kuisHint" class="flex flex-wrap justify-center gap-4 mb-6 min-h-[80px]">
+                    <div id="kuisHint" class="flex flex-wrap justify-center gap-3 mb-6 min-h-[80px] p-4 bg-sky-50 rounded-2xl border-2 border-dashed border-sky-300">
                         <!-- Hint baskets go here -->
                     </div>
 
@@ -369,138 +655,334 @@
                 </div>
                 
                 <!-- Feedback Message -->
-                <div id="kuisFeedback" class="text-center text-2xl font-bold h-10 opacity-0 transition-opacity">
+                <div id="kuisFeedback" class="text-center text-xl sm:text-2xl font-bold min-h-[36px] opacity-0 transition-opacity">
                     Benar! Hebat! 🎉
                 </div>
             </div>
 
             <!-- Quiz Result Area -->
-            <div id="kuisResultArea" class="hidden bg-white p-6 sm:p-10 rounded-3xl shadow-xl border-4 border-yellow-300 text-center animate__animated animate__zoomIn">
-                <h2 class="text-4xl font-bold text-yellow-500 mb-4">Permainan Selesai! 🏆</h2>
-                <p class="text-2xl text-gray-700 mb-6">Skor Akhir Kamu:</p>
-                <div class="text-8xl font-bold text-pink-600 mb-8" id="kuisFinalSkor">100</div>
-                <div class="text-xl text-gray-600 mb-8" id="kuisPesanAkhir">Luar Biasa! Kamu sangat pintar perkalian!</div>
-                <button onclick="resetKuisMenu()" class="px-8 py-3 bg-blue-500 text-white rounded-full font-bold text-xl shadow-[0_4px_0_#1e3a8a] hover:bg-blue-400 hover:translate-y-1 hover:shadow-none transition-all">Main Lagi</button>
+            <div id="kuisResultArea" class="hidden bg-white p-6 sm:p-10 rounded-3xl shadow-xl border-4 border-amber-300 text-center animate__animated animate__zoomIn max-w-2xl mx-auto">
+                <div class="text-7xl mb-3">🏆</div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-amber-600 mb-2">Permainan Selesai!</h2>
+                <p class="text-xl text-gray-600 mb-4">Skor Akhir Kamu:</p>
+                <div class="text-7xl sm:text-8xl font-black text-pink-600 mb-6 bg-pink-50 py-4 rounded-3xl border-2 border-pink-200 max-w-xs mx-auto" id="kuisFinalSkor">100</div>
+                <div class="text-lg sm:text-xl font-semibold text-gray-700 mb-8" id="kuisPesanAkhir">Luar Biasa! Kamu sangat pintar perkalian!</div>
+                <button onclick="resetKuisMenu()" class="px-8 py-4 bg-sky-500 text-white rounded-2xl font-bold text-xl shadow-[0_5px_0_#0369a1] hover:bg-sky-400 active:translate-y-1 active:shadow-none transition-all">🔄 Main Lagi</button>
             </div>
         </section>
 
-        <!-- SECTION: PUZZLE JODOHKAN -->
-        <section id="puzzle" class="page-section pt-4">
-            <h2 class="text-3xl sm:text-4xl font-bold text-cyan-600 text-center mb-6 animate__animated animate__fadeInDown">Puzzle Jodohkan 🧩</h2>
-            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-cyan-300">
-                <div class="flex justify-between items-center mb-6 border-b-2 border-cyan-100 pb-4">
-                    <div class="text-xl font-bold text-gray-500">Pasangkan soal dan jawaban!</div>
-                    <div class="text-xl font-bold text-cyan-500">Skor: <span id="puzzleSkor">0</span></div>
-                    <button onclick="initPuzzle()" class="px-3 py-1 bg-yellow-200 rounded text-sm font-bold hover:bg-yellow-300 shadow-[0_2px_0_#ca8a04]">Acak Ulang</button>
+        <!-- ========================================== -->
+        <!-- SECTION: PUZZLE JODOHKAN                   -->
+        <!-- ========================================== -->
+        <section id="puzzle" class="page-section pt-2">
+            <div class="text-center mb-6">
+                <span class="bg-cyan-100 text-cyan-700 font-bold px-4 py-1 rounded-full text-sm border border-cyan-300">Permainan Pasangkan Kartu</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-cyan-600 mt-2">Puzzle Jodohkan 🧩</h2>
+                <p class="text-gray-600 mt-1">Klik satu <strong>Kartu Soal</strong> di kiri, lalu klik <strong>Kartu Jawaban</strong> yang cocok di kanan!</p>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-cyan-300 max-w-4xl mx-auto">
+                <div class="flex flex-wrap justify-between items-center gap-2 mb-6 border-b-2 border-cyan-100 pb-4">
+                    <div class="text-base sm:text-lg font-bold text-cyan-800 bg-cyan-50 px-4 py-1.5 rounded-full border border-cyan-200">🎯 Pasangkan 4 Kartu!</div>
+                    <div class="text-lg font-bold text-amber-900 bg-amber-100 px-4 py-1.5 rounded-full border border-amber-300">⭐ Skor: <span id="puzzleSkor">0</span></div>
+                    <button onclick="initPuzzle()" class="px-4 py-1.5 bg-amber-300 hover:bg-amber-400 text-amber-950 rounded-full text-sm font-bold shadow-[0_3px_0_#b45309] active:translate-y-0.5 active:shadow-none">🔄 Acak Soal Baru</button>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                <div class="grid grid-cols-2 gap-4 sm:gap-8 text-center">
                     <div>
-                        <h3 class="text-2xl font-bold text-blue-600 mb-4">Soal</h3>
-                        <div id="puzzleSoalContainer" class="flex flex-col gap-4">
+                        <h3 class="text-xl sm:text-2xl font-bold text-sky-700 mb-4 bg-sky-50 py-2 rounded-2xl border border-sky-200">📦 Kartu Soal</h3>
+                        <div id="puzzleSoalContainer" class="flex flex-col gap-3 sm:gap-4">
                             <!-- Soal dinamis akan dimuat disini -->
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-pink-600 mb-4">Jawaban</h3>
-                        <div id="puzzleJawabanContainer" class="flex flex-col gap-4">
+                        <h3 class="text-xl sm:text-2xl font-bold text-pink-700 mb-4 bg-pink-50 py-2 rounded-2xl border border-pink-200">🌟 Kartu Jawaban</h3>
+                        <div id="puzzleJawabanContainer" class="flex flex-col gap-3 sm:gap-4">
                             <!-- Jawaban dinamis akan dimuat disini -->
                         </div>
                     </div>
                 </div>
 
-                <div id="puzzleFeedback" class="text-center mt-6 h-8 text-xl font-bold opacity-0 transition-opacity">
+                <div id="puzzleFeedback" class="text-center mt-6 min-h-[36px] text-xl font-bold opacity-0 transition-opacity">
                     Cocok! Hebat! ✨
                 </div>
             </div>
         </section>
 
-        <!-- SECTION: SOAL CERITA -->
-        <section id="cerita" class="page-section pt-4">
-            <h2 class="text-3xl sm:text-4xl font-bold text-rose-600 text-center mb-6 animate__animated animate__fadeInDown">Memahami Soal Cerita 📝</h2>
+        <!-- ========================================== -->
+        <!-- SECTION: SOAL CERITA                       -->
+        <!-- ========================================== -->
+        <section id="cerita" class="page-section pt-2">
+            <div class="text-center mb-6">
+                <span class="bg-rose-100 text-rose-700 font-bold px-4 py-1 rounded-full text-sm border border-rose-300">Penerapan Sehari-hari</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-rose-600 mt-2">Latihan Soal Cerita 📝</h2>
+            </div>
             
             <!-- Intro Cerita -->
-            <div id="ceritaIntro" class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-rose-300 text-center max-w-3xl mx-auto">
-                <div class="text-6xl mb-4">📖</div>
-                <h3 class="text-2xl font-bold text-gray-700 mb-4">Mari Pecahkan Masalah Sehari-hari!</h3>
-                <p class="text-gray-600 mb-6 text-lg">Kamu akan diberikan cerita pendek. Temukan bentuk perkaliannya dan hitung hasilnya dengan benar ya!</p>
-                <button onclick="startCerita()" class="px-8 py-3 bg-rose-500 text-white rounded-full font-bold text-xl shadow-[0_4px_0_#be123c] hover:bg-rose-400 hover:translate-y-1 hover:shadow-none transition-all">Mulai Membaca</button>
+            <div id="ceritaIntro" class="bg-white p-6 sm:p-10 rounded-3xl shadow-xl border-4 border-rose-300 text-center max-w-3xl mx-auto">
+                <div class="text-7xl mb-4 bg-rose-50 w-24 h-24 rounded-3xl flex items-center justify-center mx-auto border-2 border-rose-200">📖</div>
+                <h3 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">Ayo Pecahkan Cerita Sehari-hari!</h3>
+                <p class="text-gray-600 mb-8 text-base sm:text-lg max-w-xl mx-auto">Baca ceritanya pelan-pelan, bayangkan jumlah kelompok dan isinya, lalu pilih hasil perkalian yang paling tepat!</p>
+                <button onclick="startCerita()" class="px-8 py-4 bg-rose-500 text-white rounded-2xl font-bold text-xl shadow-[0_5px_0_#9f1239] hover:bg-rose-400 active:translate-y-1 active:shadow-none transition-all">🚀 Mulai Baca Soal Cerita</button>
             </div>
 
             <!-- Play Area Cerita -->
-            <div id="ceritaPlayArea" class="hidden bg-yellow-50 p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-yellow-400 max-w-4xl mx-auto">
-                <div class="flex justify-between items-center mb-6 border-b-2 border-yellow-200 pb-4">
-                    <div class="text-xl font-bold text-gray-500" id="ceritaProgress">Cerita 1 / 5</div>
-                    <div class="text-xl font-bold text-rose-500">Skor: <span id="ceritaSkorDisplay">0</span></div>
-                    <button onclick="initCerita()" class="px-3 py-1 bg-yellow-200 rounded text-sm font-bold hover:bg-yellow-300">Keluar</button>
+            <div id="ceritaPlayArea" class="hidden bg-amber-50 p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-amber-400 max-w-4xl mx-auto">
+                <div class="flex flex-wrap justify-between items-center gap-2 mb-6 border-b-2 border-amber-200 pb-4">
+                    <div class="bg-white px-4 py-1.5 rounded-full text-lg font-bold text-amber-900 border border-amber-300" id="ceritaProgress">Cerita 1 / 5</div>
+                    <div class="bg-rose-100 px-4 py-1.5 rounded-full text-lg font-bold text-rose-800 border border-rose-300">⭐ Skor: <span id="ceritaSkorDisplay">0</span></div>
+                    <button onclick="initCerita()" class="px-4 py-1.5 bg-amber-200 rounded-full text-sm font-bold hover:bg-amber-300">Keluar</button>
                 </div>
 
-                <div class="mb-8">
-                    <p id="ceritaTeks" class="text-2xl sm:text-3xl text-gray-800 font-semibold leading-relaxed mb-6 bg-white p-6 rounded-2xl shadow-inner border-2 border-dashed border-gray-300 text-center">
-                        Di sebuah taman, terdapat 4 ekor kucing...
-                    </p>
+                <div class="mb-6">
+                    <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border-4 border-dashed border-amber-300 mb-6">
+                        <p id="ceritaTeks" class="text-xl sm:text-3xl text-gray-800 font-semibold leading-relaxed text-center">
+                            Di sebuah taman, terdapat 4 ekor kucing...
+                        </p>
+                    </div>
                     
-                    <p class="text-center text-xl text-gray-600 font-bold mb-4">Pilih jawaban yang benar:</p>
+                    <p class="text-center text-lg text-amber-900 font-bold mb-4">👇 Pilih Jawaban yang Benar: 👇</p>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" id="ceritaOpsi">
                         <!-- Pilihan Ganda -->
                     </div>
                 </div>
 
-                <div id="ceritaFeedback" class="text-center text-xl sm:text-2xl font-bold min-h-[60px] opacity-0 transition-opacity"></div>
+                <div id="ceritaFeedback" class="text-center text-lg sm:text-xl font-bold min-h-[60px] opacity-0 transition-opacity bg-white/80 p-3 rounded-2xl"></div>
             </div>
 
             <!-- Result Area Cerita -->
-            <div id="ceritaResultArea" class="hidden bg-white p-6 sm:p-10 rounded-3xl shadow-xl border-4 border-green-300 text-center animate__animated animate__zoomIn max-w-3xl mx-auto">
-                <h2 class="text-4xl font-bold text-green-500 mb-4">Selesai Membaca! 📚</h2>
-                <p class="text-2xl text-gray-700 mb-6">Skor Akhir Membaca Cerita:</p>
-                <div class="text-8xl font-bold text-rose-600 mb-8" id="ceritaFinalSkor">100</div>
-                <button onclick="initCerita()" class="px-8 py-3 bg-blue-500 text-white rounded-full font-bold text-xl shadow-[0_4px_0_#1e3a8a] hover:bg-blue-400 hover:translate-y-1 hover:shadow-none transition-all">Main Lagi</button>
+            <div id="ceritaResultArea" class="hidden bg-white p-6 sm:p-10 rounded-3xl shadow-xl border-4 border-emerald-300 text-center animate__animated animate__zoomIn max-w-2xl mx-auto">
+                <div class="text-7xl mb-3">📚</div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-emerald-600 mb-2">Hebat! Selesai Membaca!</h2>
+                <p class="text-xl text-gray-600 mb-4">Skor Akhir Soal Cerita:</p>
+                <div class="text-7xl sm:text-8xl font-black text-rose-600 mb-8 bg-rose-50 py-4 rounded-3xl border-2 border-rose-200 max-w-xs mx-auto" id="ceritaFinalSkor">100</div>
+                <button onclick="initCerita()" class="px-8 py-4 bg-sky-500 text-white rounded-2xl font-bold text-xl shadow-[0_5px_0_#0369a1] hover:bg-sky-400 active:translate-y-1 active:shadow-none transition-all">🔄 Coba Lagi</button>
             </div>
         </section>
 
     </main>
 
     <!-- Footer Copyright -->
-    <footer class="mt-auto py-5 bg-white/90 backdrop-blur-md border-t-4 border-blue-300 text-center text-gray-700 shadow-inner">
+    <footer class="mt-auto py-5 bg-white/95 backdrop-blur-md border-t-4 border-sky-300 text-center text-gray-700 shadow-inner">
         <p class="font-semibold text-sm sm:text-base">
-            &copy; 2026 Dibuat dengan <span class="text-red-500 animate__animated animate__heartBeat animate__infinite inline-block">💖</span> oleh <span class="text-blue-600 font-bold text-lg">FIKRUR ROSYID</span>
+            &copy; 2026 Dibuat dengan <span class="text-red-500 animate__animated animate__heartBeat animate__infinite inline-block">💖</span> oleh <span class="text-sky-600 font-bold text-lg">FIKRUR ROSYID</span>
         </p>
-        <p class="text-xs text-gray-500 mt-1">Pengembangan Media Single Pack Application SDN Gugul 1 Pamekasan</p>
+        <p class="text-xs text-gray-500 mt-1">Pengembangan Media Single Page Application (SPA) Kelas III SDN Gugul 1 Pamekasan</p>
     </footer>
 
     <!-- Custom Message Modal -->
     <div id="customModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform" id="modalContent">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform border-4 border-sky-300" id="modalContent">
             <div class="text-5xl mb-4" id="modalIcon">🔔</div>
             <h3 class="text-2xl font-bold text-gray-800 mb-2" id="modalTitle">Pesan</h3>
             <p class="text-gray-600 mb-6" id="modalText">Ini adalah pesan.</p>
-            <button onclick="closeModal()" class="px-6 py-2 bg-blue-500 text-white rounded-full font-bold shadow-[0_4px_0_#1e3a8a] hover:bg-blue-400 active:translate-y-1 active:shadow-none transition-all w-full">Oke, Mengerti!</button>
+            <button onclick="closeModal()" class="px-6 py-3 bg-sky-500 text-white rounded-2xl font-bold shadow-[0_4px_0_#0369a1] hover:bg-sky-400 active:translate-y-1 active:shadow-none transition-all w-full">Oke, Mengerti!</button>
         </div>
     </div>
 
     <script>
-        // --- Navigation Logic ---
+        // =========================================================================
+        // 1. WEB AUDIO API SOUND GENERATOR & VISUAL BOING ANIMATION
+        // =========================================================================
+        let soundEnabled = true;
+        let audioCtx = null;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass) {
+                    audioCtx = new AudioContextClass();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icons = document.querySelectorAll('.soundIconEl');
+            const texts = document.querySelectorAll('.soundTextEl');
+            if (soundEnabled) {
+                icons.forEach(el => el.innerText = '🔊');
+                texts.forEach((el, idx) => el.innerText = idx === 0 ? 'Aktif' : 'Suara: Aktif');
+                playSound('pop');
+            } else {
+                icons.forEach(el => el.innerText = '🔇');
+                texts.forEach((el, idx) => el.innerText = idx === 0 ? 'Mati' : 'Suara: Mati');
+            }
+        }
+
+        function playSound(type = 'pop') {
+            if (!soundEnabled) return;
+            try {
+                const ctx = getAudioContext();
+                if (!ctx) return;
+
+                const now = ctx.currentTime;
+
+                if (type === 'pop') {
+                    // Bunyi "Blup / Pop" ceria saat klik tombol biasa
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(320, now);
+                    osc.frequency.exponentialRampToValueAtTime(780, now + 0.09);
+                    
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+                    
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.09);
+
+                } else if (type === 'nav') {
+                    // Bunyi "Tuing" saat pindah halaman menu
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(400, now);
+                    osc.frequency.exponentialRampToValueAtTime(650, now + 0.14);
+
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.14);
+
+                } else if (type === 'correct') {
+                    // Nada Ceria Naik (C5 - E5 - G5 - C6) saat jawaban benar
+                    const notes = [523.25, 659.25, 783.99, 1046.50];
+                    notes.forEach((freq, idx) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.075);
+
+                        gain.gain.setValueAtTime(0.22, now + idx * 0.075);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.075 + 0.2);
+
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(now + idx * 0.075);
+                        osc.stop(now + idx * 0.075 + 0.2);
+                    });
+
+                } else if (type === 'wrong') {
+                    // Nada "Tetot" lembut saat jawaban belum tepat
+                    const notes = [300, 220];
+                    notes.forEach((freq, idx) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.15);
+
+                        gain.gain.setValueAtTime(0.15, now + idx * 0.15);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.15 + 0.22);
+
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(now + idx * 0.15);
+                        osc.stop(now + idx * 0.15 + 0.22);
+                    });
+
+                } else if (type === 'fanfare') {
+                    // Musik Kemenangan Selesai Kuis
+                    const notes = [523.25, 659.25, 783.99, 1046.50, 783.99, 1046.50];
+                    const times = [0, 0.1, 0.2, 0.3, 0.45, 0.6];
+                    notes.forEach((freq, idx) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, now + times[idx]);
+
+                        gain.gain.setValueAtTime(0.25, now + times[idx]);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + times[idx] + 0.3);
+
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(now + times[idx]);
+                        osc.stop(now + times[idx] + 0.3);
+                    });
+                }
+            } catch (e) {
+                console.warn('Audio error:', e);
+            }
+        }
+
+        // Efek Gelombang Visual & Animasi Membal Global untuk Semua Tombol
+        document.addEventListener('click', function(e) {
+            const clickable = e.target.closest('button, .interactive-card, .tabel-cell');
+            if (!clickable) return;
+
+            // 1. Buat efek gelombang bunyi (ripple) di titik klik
+            if (e.clientX && e.clientY) {
+                const ripple = document.createElement('div');
+                ripple.className = 'sound-ripple';
+                ripple.style.left = `${e.clientX}px`;
+                ripple.style.top = `${e.clientY}px`;
+                ripple.style.width = '28px';
+                ripple.style.height = '28px';
+                document.body.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 450);
+            }
+
+            // 2. Berikan animasi membal (boing) pada tombol
+            clickable.classList.remove('btn-pop-anim');
+            void clickable.offsetWidth; // trigger reflow
+            clickable.classList.add('btn-pop-anim');
+
+            // 3. Putar suara pop jika bukan tombol mute sendiri
+            if (clickable.id !== 'soundToggleBtn') {
+                if (clickable.classList.contains('nav-btn')) {
+                    playSound('nav');
+                } else {
+                    playSound('pop');
+                }
+            }
+        });
+
+        // =========================================================================
+        // 2. NAVIGATION LOGIC
+        // =========================================================================
         function navigate(pageId) {
-            // Hide all sections
+            // Sembunyikan semua halaman
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active');
-                section.classList.remove('animate__fadeIn');
             });
-            // Show target section
+
+            // Tampilkan halaman target
             const target = document.getElementById(pageId);
-            target.classList.add('active');
-            target.classList.add('animate__fadeIn');
+            if (target) {
+                target.classList.add('active');
+            }
+
+            // Highlight tombol navigasi kapsul yang aktif
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active-nav');
+            });
+            const activeNavBtn = document.getElementById(`nav-${pageId}`);
+            if (activeNavBtn) {
+                activeNavBtn.classList.add('active-nav');
+            }
+
+            // Scroll ke atas dengan halus
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             
-            // Re-render specific components based on page
-            if(pageId === 'tabel' && !tabelDibuat) {
+            // Inisialisasi komponen spesifik halaman
+            if (pageId === 'tabel' && !tabelDibuat) {
                 generateTabel();
             }
-            if(pageId === 'cerita') {
+            if (pageId === 'cerita') {
                 initCerita();
             }
         }
 
-        // --- Custom Modal Logic (Replacing alert) ---
+        // --- Custom Modal Logic ---
         function showModal(title, text, icon = "🔔") {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalText').innerText = text;
@@ -521,16 +1003,18 @@
             }, 200);
         }
 
-        // --- Simulasi Belajar Logic ---
+        // =========================================================================
+        // 3. SIMULASI BELAJAR LOGIC
+        // =========================================================================
         let simKeranjang = 3;
         let simApel = 4;
-        
-        // Array benda untuk variasi simulasi
-        let bendaList = ['🍎', '🐶', '🚗', '🎈', '⭐', '🍓', '🐼', '⚽', '🦋', '🍔'];
+        let bendaList = ['🍎', '🍩', '🐱', '🚗', '🎈', '⭐', '🍓', '🐼', '⚽', '🦋'];
         let currentBendaIndex = 0;
 
         function gantiBenda() {
             currentBendaIndex = (currentBendaIndex + 1) % bendaList.length;
+            const preview = document.getElementById('currentBendaPreview');
+            if (preview) preview.innerText = bendaList[currentBendaIndex];
             renderVisualSimulasi();
         }
 
@@ -552,9 +1036,9 @@
 
         function renderVisualSimulasi() {
             const container = document.getElementById('visualContainer');
-            if (!container) return; // Mencegah error jika elemen HTML belum ada
+            if (!container) return;
             
-            container.innerHTML = ''; // Clear existing
+            container.innerHTML = '';
             
             let penjumlahanArr = [];
             let currentBenda = bendaList[currentBendaIndex];
@@ -562,60 +1046,61 @@
             for (let i = 0; i < simKeranjang; i++) {
                 penjumlahanArr.push(simApel);
                 
-                // Create basket
                 const basket = document.createElement('div');
-                basket.className = 'box-container w-24 sm:w-28 animate__animated animate__bounceIn';
+                basket.className = 'box-container w-28 sm:w-32 animate__animated animate__bounceIn pt-6';
                 
-                // Add objects instead of just apples
+                // Label nomor kotak
+                let labelHtml = `<span class="absolute top-1 left-2 text-[11px] font-bold text-sky-600 bg-sky-100 px-2 rounded-full">Kotak ${i + 1}</span>`;
+                
                 let applesHtml = '';
                 for (let j = 0; j < simApel; j++) {
                     applesHtml += `<span class="fruit-icon">${currentBenda}</span>`;
                 }
-                basket.innerHTML = applesHtml;
+                basket.innerHTML = labelHtml + applesHtml;
                 container.appendChild(basket);
             }
 
-            // Update text
             const hasil = simKeranjang * simApel;
             const textPenj = document.getElementById('textPenjumlahan');
             if (textPenj) textPenj.innerText = penjumlahanArr.join(' + ') + ' = ' + hasil;
+
+            const textPenjelasan = document.getElementById('textPenjelasanSimulasi');
+            if (textPenjelasan) {
+                textPenjelasan.innerText = `Ada ${simKeranjang} kotak, masing-masing berisi ${simApel} ${currentBenda} (Total: ${hasil})`;
+            }
             
-            // Add animation class to text to make it pop
             const textPerkalian = document.getElementById('textPerkalian');
             if (textPerkalian) {
-                textPerkalian.innerText = `${simKeranjang} x ${simApel} = ${hasil}`;
+                textPerkalian.innerText = `${simKeranjang} × ${simApel} = ${hasil}`;
                 textPerkalian.classList.remove('animate__headShake');
-                void textPerkalian.offsetWidth; // trigger reflow
+                void textPerkalian.offsetWidth;
                 textPerkalian.classList.add('animate__headShake');
             }
         }
 
-        // Initialize simulation on load with safe event listener
-        window.addEventListener('DOMContentLoaded', () => {
-            renderVisualSimulasi();
-        });
-
-        // --- Tabel Pintar Logic ---
+        // =========================================================================
+        // 4. TABEL PINTAR LOGIC
+        // =========================================================================
         let tabelDibuat = false;
         
         function generateTabel() {
             const thead = document.getElementById('tabelHeader');
             const tbody = document.getElementById('tabelBody');
+            if (!thead || !tbody) return;
             
-            // Create headers
-            let headerHtml = '<th class="p-2 border border-purple-300 bg-purple-300 text-purple-900 rounded-tl-xl">X</th>';
+            let headerHtml = '<th class="p-2.5 border border-purple-400 bg-amber-400 text-amber-950 font-black text-lg">×</th>';
             for (let i = 1; i <= 10; i++) {
-                headerHtml += `<th class="p-2 border border-purple-300 bg-purple-200 min-w-[40px]">${i}</th>`;
+                headerHtml += `<th class="p-2.5 border border-purple-400 bg-purple-600 text-white min-w-[38px]">${i}</th>`;
             }
             thead.innerHTML = headerHtml;
 
-            // Create rows
             let bodyHtml = '';
             for (let row = 1; row <= 10; row++) {
-                bodyHtml += `<tr><th class="p-2 border border-purple-300 bg-purple-200 text-purple-800">${row}</th>`;
+                bodyHtml += `<tr><th class="p-2.5 border border-purple-300 bg-purple-200 text-purple-900 font-bold">${row}</th>`;
                 for (let col = 1; col <= 10; col++) {
                     const hasil = row * col;
-                    bodyHtml += `<td class="p-2 border border-purple-100 bg-white hover:bg-purple-100 cursor-pointer font-semibold transition-colors duration-200" onclick="showTabelDetail(${row}, ${col}, ${hasil})">${hasil}</td>`;
+                    const isDiagonal = row === col ? 'bg-purple-50/80 font-bold text-purple-900' : 'bg-white text-gray-700';
+                    bodyHtml += `<td class="tabel-cell p-2.5 border border-purple-200 ${isDiagonal} hover:bg-amber-300 hover:text-amber-950 hover:font-black cursor-pointer font-semibold transition-all duration-150" onclick="showTabelDetail(${row}, ${col}, ${hasil}, this)">${hasil}</td>`;
                 }
                 bodyHtml += '</tr>';
             }
@@ -623,22 +1108,31 @@
             tabelDibuat = true;
         }
 
-        function showTabelDetail(row, col, hasil) {
+        function showTabelDetail(row, col, hasil, cellEl) {
+            // Highlight sel yang dipilih
+            document.querySelectorAll('.tabel-cell').forEach(el => {
+                el.classList.remove('ring-4', 'ring-amber-500', 'bg-amber-300');
+            });
+            if (cellEl) {
+                cellEl.classList.add('ring-4', 'ring-amber-500', 'bg-amber-300');
+            }
+
             const detailBox = document.getElementById('tabelDetailBox');
-            detailBox.classList.remove('hidden');
-            detailBox.classList.remove('animate__zoomIn');
-            void detailBox.offsetWidth; // trigger reflow
-            detailBox.classList.add('animate__zoomIn');
+            detailBox.classList.remove('animate__pulse');
+            void detailBox.offsetWidth;
+            detailBox.classList.add('animate__pulse');
             
-            document.getElementById('tabelDetailTitle').innerText = `${row} x ${col} = ${hasil}`;
+            document.getElementById('tabelDetailTitle').innerText = `${row} × ${col} = ${hasil}`;
             
             let arr = Array(row).fill(col);
-            document.getElementById('tabelDetailPenjumlahan').innerText = `Penjumlahan berulang: ${arr.join(' + ')} = ${hasil}`;
+            document.getElementById('tabelDetailPenjumlahan').innerText = `${arr.join(' + ')} = ${hasil}`;
         }
 
-        // --- Kuis Interaktif Logic ---
+        // =========================================================================
+        // 5. KUIS INTERAKTIF LOGIC
+        // =========================================================================
         let kuisState = {
-            mode: '', // 'santai' or 'tantangan'
+            mode: '',
             soalSaatIni: 0,
             totalSoal: 5,
             skor: 0,
@@ -648,30 +1142,25 @@
         function generateSoal() {
             let soal = [];
             for (let i = 0; i < kuisState.totalSoal; i++) {
-                // Determine ranges based on grade 3 level (mostly 1-10)
-                let a = Math.floor(Math.random() * 8) + 2; // 2 to 9
-                let b = Math.floor(Math.random() * 8) + 2; // 2 to 9
+                let a = Math.floor(Math.random() * 8) + 2; // 2 s.d 9
+                let b = Math.floor(Math.random() * 8) + 2; // 2 s.d 9
                 let jawaban = a * b;
                 
-                // Generate wrong options
                 let opsi = [jawaban];
-                while(opsi.length < 4) {
-                    let salah = (a + Math.floor(Math.random()*3 - 1)) * (b + Math.floor(Math.random()*3 - 1));
-                    if(salah < 0) salah = Math.abs(salah) + 2;
-                    if (!opsi.includes(salah) && salah !== jawaban) {
+                while (opsi.length < 4) {
+                    let offsetA = Math.floor(Math.random() * 3) - 1;
+                    let offsetB = Math.floor(Math.random() * 3) - 1;
+                    let salah = (a + offsetA) * (b + offsetB);
+                    if (salah <= 0 || salah === jawaban) {
+                        salah = jawaban + (Math.floor(Math.random() * 5) + 1) * (Math.random() > 0.5 ? 1 : -1);
+                    }
+                    if (salah > 0 && !opsi.includes(salah) && salah !== jawaban) {
                         opsi.push(salah);
                     }
                 }
                 
-                // Shuffle options
                 opsi = opsi.sort(() => Math.random() - 0.5);
-                
-                soal.push({
-                    a: a,
-                    b: b,
-                    jawaban: jawaban,
-                    opsi: opsi
-                });
+                soal.push({ a, b, jawaban, opsi });
             }
             return soal;
         }
@@ -687,7 +1176,7 @@
             
             const playArea = document.getElementById('kuisPlayArea');
             playArea.classList.remove('hidden');
-            playArea.classList.add('animate__animated', 'animate__zoomIn');
+            playArea.classList.add('animate__animated', 'animate__fadeIn');
             
             renderSoal();
         }
@@ -697,25 +1186,21 @@
             
             document.getElementById('kuisProgress').innerText = `Soal ${kuisState.soalSaatIni + 1} / ${kuisState.totalSoal}`;
             document.getElementById('kuisSkor').innerText = kuisState.skor;
-            document.getElementById('kuisPertanyaan').innerText = `${soalData.a} x ${soalData.b} = ?`;
+            document.getElementById('kuisPertanyaan').innerText = `${soalData.a} × ${soalData.b} = ?`;
             
-            // Visual Hint logic (Only for Santai / Terbimbing Mode)
             const hintContainer = document.getElementById('kuisHint');
             hintContainer.innerHTML = '';
             if (kuisState.mode === 'santai') {
                 hintContainer.classList.remove('hidden');
-                
-                // Pilih benda acak untuk pertanyaan ini
                 let randomBenda = bendaList[Math.floor(Math.random() * bendaList.length)];
                 
                 for (let i = 0; i < soalData.a; i++) {
                     const basket = document.createElement('div');
-                    basket.className = 'box-container w-16 sm:w-20 animate__animated animate__fadeIn';
+                    basket.className = 'box-container w-20 sm:w-24 animate__animated animate__zoomIn p-2';
                     let applesHtml = '';
-                    for (let j = 0; j < Math.min(soalData.b, 9); j++) { // Cap visual items so it doesn't break layout
+                    for (let j = 0; j < soalData.b; j++) {
                         applesHtml += `<span class="text-xl">${randomBenda}</span>`;
                     }
-                    if(soalData.b > 9) applesHtml += `<span class="text-sm font-bold">+${soalData.b - 9}</span>`;
                     basket.innerHTML = applesHtml;
                     hintContainer.appendChild(basket);
                 }
@@ -723,13 +1208,12 @@
                 hintContainer.classList.add('hidden');
             }
 
-            // Options logic
             const opsiContainer = document.getElementById('kuisOpsi');
             opsiContainer.innerHTML = '';
             
             soalData.opsi.forEach(opt => {
                 const btn = document.createElement('button');
-                btn.className = 'py-4 bg-gray-100 hover:bg-pink-100 border-4 border-gray-300 hover:border-pink-400 rounded-2xl text-3xl font-bold text-gray-700 transition-all transform active:scale-95';
+                btn.className = 'py-4 bg-sky-50 hover:bg-pink-100 border-4 border-sky-200 hover:border-pink-400 rounded-2xl text-3xl font-black text-gray-800 shadow-[0_4px_0_#bae6fd] transition-all';
                 btn.innerText = opt;
                 btn.onclick = () => cekJawaban(opt, btn);
                 opsiContainer.appendChild(btn);
@@ -743,52 +1227,40 @@
             const feedback = document.getElementById('kuisFeedback');
             const opsiContainer = document.getElementById('kuisOpsi');
             
-            // Disable all buttons immediately
             const allBtns = opsiContainer.querySelectorAll('button');
             allBtns.forEach(b => b.disabled = true);
 
             if (jawabanDipilih === soalData.jawaban) {
-                // Correct
-                btnElement.classList.replace('bg-gray-100', 'bg-green-400');
-                btnElement.classList.replace('hover:bg-pink-100', 'bg-green-400');
-                btnElement.classList.replace('border-gray-300', 'border-green-600');
-                btnElement.classList.add('text-white', 'animate__animated', 'animate__pulse');
+                playSound('correct');
+                btnElement.className = 'py-4 bg-emerald-500 border-4 border-emerald-700 rounded-2xl text-3xl font-black text-white animate__animated animate__pulse';
                 
-                kuisState.skor += 20; // 5 questions, total 100
+                kuisState.skor += 20;
                 document.getElementById('kuisSkor').innerText = kuisState.skor;
                 
-                feedback.innerText = "Benar! Hebat! 🎉";
-                feedback.className = "text-center text-2xl font-bold h-10 text-green-500 animate__animated animate__bounceIn";
+                feedback.innerText = "Benar! Kamu Hebat Sekali! 🎉";
+                feedback.className = "text-center text-xl sm:text-2xl font-bold min-h-[36px] text-emerald-600 animate__animated animate__bounceIn";
                 feedback.style.opacity = '1';
                 
-                // Small confetti for correct answer
                 confetti({
-                    particleCount: 30,
-                    spread: 50,
-                    origin: { y: 0.8 },
-                    colors: ['#34d399', '#f472b6', '#fbbf24']
+                    particleCount: 35,
+                    spread: 60,
+                    origin: { y: 0.8 }
                 });
             } else {
-                // Wrong
-                btnElement.classList.replace('bg-gray-100', 'bg-red-400');
-                btnElement.classList.replace('hover:bg-pink-100', 'bg-red-400');
-                btnElement.classList.replace('border-gray-300', 'border-red-600');
-                btnElement.classList.add('text-white', 'animate__animated', 'animate__shakeX');
+                playSound('wrong');
+                btnElement.className = 'py-4 bg-rose-500 border-4 border-rose-700 rounded-2xl text-3xl font-black text-white animate__animated animate__shakeX';
                 
-                // Highlight correct answer
                 allBtns.forEach(b => {
-                    if(parseInt(b.innerText) === soalData.jawaban) {
-                        b.classList.replace('bg-gray-100', 'bg-green-200');
-                        b.classList.replace('border-gray-300', 'border-green-400');
+                    if (parseInt(b.innerText) === soalData.jawaban) {
+                        b.className = 'py-4 bg-emerald-200 border-4 border-emerald-500 rounded-2xl text-3xl font-black text-emerald-900';
                     }
                 });
 
-                feedback.innerText = `Ups! Jawaban benar adalah ${soalData.jawaban} 😅`;
-                feedback.className = "text-center text-2xl font-bold h-10 text-red-500 animate__animated animate__headShake";
+                feedback.innerText = `Ups! Jawaban yang tepat adalah ${soalData.jawaban} 😊`;
+                feedback.className = "text-center text-xl sm:text-2xl font-bold min-h-[36px] text-rose-600 animate__animated animate__headShake";
                 feedback.style.opacity = '1';
             }
 
-            // Next question after delay
             setTimeout(() => {
                 kuisState.soalSaatIni++;
                 if (kuisState.soalSaatIni < kuisState.totalSoal) {
@@ -800,24 +1272,22 @@
         }
 
         function selesaiKuis() {
+            playSound('fanfare');
             document.getElementById('kuisPlayArea').classList.add('hidden');
             const resultArea = document.getElementById('kuisResultArea');
             resultArea.classList.remove('hidden');
-            resultArea.classList.remove('animate__zoomIn');
-            void resultArea.offsetWidth;
-            resultArea.classList.add('animate__zoomIn');
             
             document.getElementById('kuisFinalSkor').innerText = kuisState.skor;
             
             let pesan = "";
             if (kuisState.skor === 100) {
-                pesan = "Sempurna! Kamu jenius perkalian! 🌟";
+                pesan = "Sempurna! Kamu bintang juara perkalian Kelas 3! 🌟";
                 triggerBigConfetti();
             } else if (kuisState.skor >= 60) {
-                pesan = "Bagus sekali! Terus berlatih ya! 👍";
+                pesan = "Bagus sekali! Sedikit lagi mencapai nilai sempurna! 👍";
                 triggerBigConfetti();
             } else {
-                pesan = "Jangan menyerah, ayo belajar lagi di Menu Simulasi! 💪";
+                pesan = "Tetap semangat! Ayo latihan lagi di menu Simulasi & Tabel! 💪";
             }
             document.getElementById('kuisPesanAkhir').innerText = pesan;
         }
@@ -830,47 +1300,38 @@
         function resetKuisMenu() {
             document.getElementById('kuisResultArea').classList.add('hidden');
             document.getElementById('kuisModeSelection').classList.remove('hidden');
-            document.getElementById('kuisModeSelection').classList.add('animate__animated', 'animate__fadeIn');
         }
 
         function triggerBigConfetti() {
-            var duration = 3 * 1000;
+            var duration = 2.5 * 1000;
             var animationEnd = Date.now() + duration;
             var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
             var interval = setInterval(function() {
                 var timeLeft = animationEnd - Date.now();
-
-                if (timeLeft <= 0) {
-                    return clearInterval(interval);
-                }
-
-                var particleCount = 50 * (timeLeft / duration);
-                // since particles fall down, start a bit higher than random
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+                if (timeLeft <= 0) return clearInterval(interval);
+                var particleCount = 45 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random() * 0.3 + 0.1, y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random() * 0.3 + 0.6, y: Math.random() - 0.2 } }));
             }, 250);
         }
 
-        function randomInRange(min, max) {
-            return Math.random() * (max - min) + min;
-        }
-
-        // --- Puzzle Jodohkan Logic ---
+        // =========================================================================
+        // 6. PUZZLE JODOHKAN LOGIC
+        // =========================================================================
         let puzzlePairs = [];
-        let selectedCard = null; // {type: 'soal'|'jawab', value: number, element: DOM}
+        let selectedCard = null;
         let matchedCount = 0;
         let puzzleScore = 0;
 
         function generatePuzzleData() {
             let data = [];
-            while(data.length < 4) { // 4 pasang soal
+            while (data.length < 4) {
                 let a = Math.floor(Math.random() * 8) + 2;
                 let b = Math.floor(Math.random() * 8) + 2;
                 let hasil = a * b;
-                // Cegah hasil ganda agar tidak bingung
-                if(!data.find(item => item.hasil === hasil)) {
-                    data.push({teksSoal: `${a} x ${b}`, hasil: hasil});
+                if (!data.find(item => item.hasil === hasil)) {
+                    data.push({ teksSoal: `${a} × ${b}`, hasil: hasil });
                 }
             }
             return data;
@@ -880,28 +1341,22 @@
             const soalContainer = document.getElementById('puzzleSoalContainer');
             const jawabContainer = document.getElementById('puzzleJawabanContainer');
             const feedback = document.getElementById('puzzleFeedback');
-            
-            // Pengaman: Jika kontainer belum dirender oleh browser, hentikan fungsi sementara
-            if (!soalContainer || !jawabContainer) return; 
+            if (!soalContainer || !jawabContainer) return;
 
             puzzlePairs = generatePuzzleData();
             matchedCount = 0;
             selectedCard = null;
-            
-            // Pengaman tambahan sebelum mengakses style
-            if (feedback !== null) {
-                feedback.style.opacity = '0';
-            }
+            if (feedback) feedback.style.opacity = '0';
             
             let soalArr = [...puzzlePairs];
-            let jawabArr = [...puzzlePairs].sort(() => Math.random() - 0.5); // Acak jawaban
+            let jawabArr = [...puzzlePairs].sort(() => Math.random() - 0.5);
 
             soalContainer.innerHTML = '';
             jawabContainer.innerHTML = '';
 
             soalArr.forEach(item => {
                 let btn = document.createElement('button');
-                btn.className = 'py-4 px-6 bg-blue-100 border-4 border-blue-300 rounded-xl text-2xl font-bold text-blue-800 hover:bg-blue-200 transition-all';
+                btn.className = 'py-4 px-4 bg-sky-100 border-4 border-sky-300 rounded-2xl text-2xl font-black text-sky-900 hover:bg-sky-200 shadow-[0_4px_0_#7dd3fc] transition-all';
                 btn.innerText = item.teksSoal;
                 btn.onclick = () => handlePuzzleClick('soal', item.hasil, btn);
                 soalContainer.appendChild(btn);
@@ -909,7 +1364,7 @@
 
             jawabArr.forEach(item => {
                 let btn = document.createElement('button');
-                btn.className = 'py-4 px-6 bg-pink-100 border-4 border-pink-300 rounded-xl text-2xl font-bold text-pink-800 hover:bg-pink-200 transition-all';
+                btn.className = 'py-4 px-4 bg-pink-100 border-4 border-pink-300 rounded-2xl text-2xl font-black text-pink-900 hover:bg-pink-200 shadow-[0_4px_0_#f9a8d4] transition-all';
                 btn.innerText = item.hasil;
                 btn.onclick = () => handlePuzzleClick('jawab', item.hasil, btn);
                 jawabContainer.appendChild(btn);
@@ -917,99 +1372,92 @@
         }
 
         function handlePuzzleClick(type, value, btnElement) {
-            // Jika sudah disabled (sudah match), abaikan
-            if(btnElement.disabled) return;
+            if (btnElement.disabled) return;
 
-            // Jika mengklik kartu yang sama, batalkan pilihan
-            if(selectedCard && selectedCard.element === btnElement) {
+            if (selectedCard && selectedCard.element === btnElement) {
                 resetCardStyle(selectedCard);
                 selectedCard = null;
                 return;
             }
 
-            // Jika memilih tipe yang sama (misal soal ke soal lain), pindah pilihan
-            if(selectedCard && selectedCard.type === type) {
+            if (selectedCard && selectedCard.type === type) {
                 resetCardStyle(selectedCard);
-                selectedCard = {type, value, element: btnElement};
+                selectedCard = { type, value, element: btnElement };
                 highlightCard(selectedCard);
                 return;
             }
 
-            // Jika ini pilihan pertama
-            if(!selectedCard) {
-                selectedCard = {type, value, element: btnElement};
+            if (!selectedCard) {
+                selectedCard = { type, value, element: btnElement };
                 highlightCard(selectedCard);
                 return;
             }
 
-            // Jika sudah ada pilihan dan tipenya berbeda, lakukan pengecekan
-            highlightCard({type, value, element: btnElement}); // highlight the second one temporarily
-            
+            highlightCard({ type, value, element: btnElement });
             let feedback = document.getElementById('puzzleFeedback');
             
-            if(selectedCard.value === value) {
-                // Match
-                btnElement.classList.replace('bg-pink-100', 'bg-green-400');
-                btnElement.classList.replace('bg-blue-100', 'bg-green-400');
-                btnElement.classList.add('text-white', 'border-green-600');
+            if (selectedCard.value === value) {
+                playSound('correct');
+                btnElement.className = 'py-4 px-4 bg-emerald-500 border-4 border-emerald-700 rounded-2xl text-2xl font-black text-white opacity-90 cursor-default';
                 btnElement.disabled = true;
 
-                selectedCard.element.classList.replace('bg-blue-100', 'bg-green-400');
-                selectedCard.element.classList.replace('bg-pink-100', 'bg-green-400');
-                selectedCard.element.classList.add('text-white', 'border-green-600');
+                selectedCard.element.className = 'py-4 px-4 bg-emerald-500 border-4 border-emerald-700 rounded-2xl text-2xl font-black text-white opacity-90 cursor-default';
                 selectedCard.element.disabled = true;
 
                 puzzleScore += 10;
                 document.getElementById('puzzleSkor').innerText = puzzleScore;
                 matchedCount++;
                 
-                feedback.innerText = "Cocok! Hebat! ✨";
-                feedback.className = "mt-6 h-8 text-xl font-bold text-green-500 animate__animated animate__fadeIn";
+                feedback.innerText = "Pasangan Cocok! Hebat! ✨";
+                feedback.className = "text-center mt-6 min-h-[36px] text-xl font-bold text-emerald-600 animate__animated animate__bounceIn";
                 feedback.style.opacity = '1';
 
-                if(matchedCount === 4) {
+                if (matchedCount === 4) {
                     setTimeout(() => {
-                        feedback.innerText = "Selamat! Kamu menyelesaikan puzzle! 🎉";
-                        confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
-                    }, 500);
+                        playSound('fanfare');
+                        feedback.innerText = "Hore! Semua Kartu Berhasil Dijodohkan! 🎉";
+                        confetti({ particleCount: 60, spread: 70, origin: { y: 0.7 } });
+                    }, 400);
                 }
                 selectedCard = null;
             } else {
-                // Mismatch
+                playSound('wrong');
                 let oldCard = selectedCard;
-                feedback.innerText = "Ups! Belum cocok, coba lagi! 😅";
-                feedback.className = "mt-6 h-8 text-xl font-bold text-red-500 animate__animated animate__shakeX";
+                feedback.innerText = "Ups! Belum cocok, ayo hitung lagi! 😅";
+                feedback.className = "text-center mt-6 min-h-[36px] text-xl font-bold text-rose-600 animate__animated animate__shakeX";
                 feedback.style.opacity = '1';
 
                 setTimeout(() => {
                     resetCardStyle(oldCard);
-                    resetCardStyle({type, value, element: btnElement});
+                    resetCardStyle({ type, value, element: btnElement });
                     feedback.style.opacity = '0';
-                }, 1000);
+                }, 900);
                 
                 selectedCard = null;
             }
         }
 
         function highlightCard(card) {
-            card.element.classList.add('ring-4', 'ring-yellow-400', 'scale-105');
+            card.element.classList.add('ring-4', 'ring-amber-400', 'scale-105', 'bg-amber-200');
         }
 
         function resetCardStyle(card) {
             if (card && card.element) {
-                card.element.classList.remove('ring-4', 'ring-yellow-400', 'scale-105');
+                card.element.classList.remove('ring-4', 'ring-amber-400', 'scale-105', 'bg-amber-200');
             }
         }
 
-        // --- Soal Cerita Logic ---
+        // =========================================================================
+        // 7. SOAL CERITA LOGIC
+        // =========================================================================
         let ceritaIndex = 0;
         let ceritaSkor = 0;
         const dataCerita = [
-            { teks: "Di taman, ada 4 ekor kucing 🐈. Setiap kucing punya 4 kaki. Berapa jumlah kaki kucing semuanya?", jawab: 16, opsi: [12, 16, 8, 20], bentuk: "4 x 4 = 16" },
-            { teks: "Ibu membeli 5 kotak donat 🍩. Tiap kotak isi 3 donat. Berapa banyak donat Ibu seluruhnya?", jawab: 15, opsi: [15, 12, 20, 8], bentuk: "5 x 3 = 15" },
-            { teks: "Pak Tani menanam 3 baris pohon jagung 🌱. Tiap baris ada 6 pohon. Berapa jumlah semua pohon jagung?", jawab: 18, opsi: [18, 12, 24, 9], bentuk: "3 x 6 = 18" },
-            { teks: "Di kelas ada 6 meja 🪑. Tiap meja diduduki 2 anak. Berapa jumlah anak semuanya?", jawab: 12, opsi: [10, 8, 12, 14], bentuk: "6 x 2 = 12" },
-            { teks: "Ada 5 mobil di parkiran 🚗. Tiap mobil punya 4 roda. Berapa jumlah semua roda mobil?", jawab: 20, opsi: [16, 20, 24, 9], bentuk: "5 x 4 = 20" }
+            { teks: "Di halaman sekolah ada 4 ekor kucing 🐈. Setiap kucing memiliki 4 kaki. Berapa jumlah semua kaki kucing tersebut?", jawab: 16, opsi: [12, 16, 8, 20], bentuk: "4 kucing × 4 kaki = 16 kaki (4 + 4 + 4 + 4 = 16)" },
+            { teks: "Ibu membeli 5 kotak donat 🍩. Setiap kotak berisi 3 donat. Berapa banyak donat Ibu seluruhnya?", jawab: 15, opsi: [15, 12, 20, 8], bentuk: "5 kotak × 3 donat = 15 donat (3 + 3 + 3 + 3 + 3 = 15)" },
+            { teks: "Pak Tani menanam 3 baris pohon jagung 🌱. Tiap baris berisi 6 pohon. Berapa jumlah semua pohon jagung Pak Tani?", jawab: 18, opsi: [18, 12, 24, 9], bentuk: "3 baris × 6 pohon = 18 pohon (6 + 6 + 6 = 18)" },
+            { teks: "Di dalam kelas terdapat 6 meja belajar 🪑. Setiap meja diduduki oleh 2 siswa. Berapa jumlah siswa semuanya?", jawab: 12, opsi: [10, 8, 12, 14], bentuk: "6 meja × 2 siswa = 12 siswa (2 + 2 + 2 + 2 + 2 + 2 = 12)" },
+            { teks: "Ada 5 mobil diparkir di halaman 🚗. Setiap mobil memiliki 4 roda. Berapa jumlah seluruh roda mobil tersebut?", jawab: 20, opsi: [16, 20, 24, 9], bentuk: "5 mobil × 4 roda = 20 roda (4 + 4 + 4 + 4 + 4 = 20)" }
         ];
 
         function initCerita() {
@@ -1023,7 +1471,6 @@
             ceritaSkor = 0;
             document.getElementById('ceritaIntro').classList.add('hidden');
             document.getElementById('ceritaPlayArea').classList.remove('hidden');
-            document.getElementById('ceritaPlayArea').classList.add('animate__animated', 'animate__fadeIn');
             renderCerita();
         }
 
@@ -1036,12 +1483,11 @@
             const opsiContainer = document.getElementById('ceritaOpsi');
             opsiContainer.innerHTML = '';
             
-            // Acak opsi jawaban
             let opsiAcak = [...soal.opsi].sort(() => Math.random() - 0.5);
             
             opsiAcak.forEach(opt => {
                 const btn = document.createElement('button');
-                btn.className = 'py-3 bg-white hover:bg-rose-100 border-4 border-rose-200 hover:border-rose-400 rounded-2xl text-2xl font-bold text-gray-700 transition-all active:scale-95 shadow-sm';
+                btn.className = 'py-4 bg-white hover:bg-rose-100 border-4 border-rose-300 rounded-2xl text-2xl font-black text-gray-800 shadow-[0_4px_0_#fda4af] transition-all';
                 btn.innerText = opt;
                 btn.onclick = () => cekJawabanCerita(opt, btn, soal);
                 opsiContainer.appendChild(btn);
@@ -1058,38 +1504,32 @@
             allBtns.forEach(b => b.disabled = true);
 
             if (jawabanDipilih === soal.jawab) {
-                btnElement.classList.replace('bg-white', 'bg-green-400');
-                btnElement.classList.replace('hover:bg-rose-100', 'bg-green-400');
-                btnElement.classList.replace('border-rose-200', 'border-green-600');
-                btnElement.classList.add('text-white', 'animate__animated', 'animate__pulse');
+                playSound('correct');
+                btnElement.className = 'py-4 bg-emerald-500 border-4 border-emerald-700 rounded-2xl text-2xl font-black text-white animate__animated animate__pulse';
                 
                 ceritaSkor += 20;
                 document.getElementById('ceritaSkorDisplay').innerText = ceritaSkor;
                 
-                feedback.innerHTML = `Benar! 🎉 <br><span class="text-lg text-gray-700">Penjelasan: ${soal.bentuk}</span>`;
-                feedback.className = "text-center text-xl sm:text-2xl font-bold min-h-[60px] mt-4 text-green-600 animate__animated animate__bounceIn";
+                feedback.innerHTML = `Benar Sekali! 🎉 <br><span class="text-base text-gray-700">Cara hitung: <strong>${soal.bentuk}</strong></span>`;
+                feedback.className = "text-center text-lg sm:text-xl font-bold min-h-[60px] mt-4 text-emerald-700 bg-emerald-50 border-2 border-emerald-300 p-3 rounded-2xl animate__animated animate__bounceIn";
                 feedback.style.opacity = '1';
                 
-                confetti({ particleCount: 30, spread: 50, origin: { y: 0.8 }, colors: ['#34d399', '#fbbf24', '#f43f5e'] });
+                confetti({ particleCount: 35, spread: 55, origin: { y: 0.8 } });
             } else {
-                btnElement.classList.replace('bg-white', 'bg-red-400');
-                btnElement.classList.replace('hover:bg-rose-100', 'bg-red-400');
-                btnElement.classList.replace('border-rose-200', 'border-red-600');
-                btnElement.classList.add('text-white', 'animate__animated', 'animate__shakeX');
+                playSound('wrong');
+                btnElement.className = 'py-4 bg-rose-500 border-4 border-rose-700 rounded-2xl text-2xl font-black text-white animate__animated animate__shakeX';
                 
                 allBtns.forEach(b => {
-                    if(parseInt(b.innerText) === soal.jawab) {
-                        b.classList.replace('bg-white', 'bg-green-200');
-                        b.classList.replace('border-rose-200', 'border-green-400');
+                    if (parseInt(b.innerText) === soal.jawab) {
+                        b.className = 'py-4 bg-emerald-200 border-4 border-emerald-500 rounded-2xl text-2xl font-black text-emerald-900';
                     }
                 });
 
-                feedback.innerHTML = `Ups! Jawaban tepat adalah ${soal.jawab} 😅 <br><span class="text-lg text-gray-700">Ingat: ${soal.bentuk}</span>`;
-                feedback.className = "text-center text-xl sm:text-2xl font-bold min-h-[60px] mt-4 text-red-500 animate__animated animate__headShake";
+                feedback.innerHTML = `Jawaban yang tepat adalah <strong>${soal.jawab}</strong> 😊 <br><span class="text-base text-gray-700">Ingat: <strong>${soal.bentuk}</strong></span>`;
+                feedback.className = "text-center text-lg sm:text-xl font-bold min-h-[60px] mt-4 text-rose-700 bg-rose-50 border-2 border-rose-300 p-3 rounded-2xl animate__animated animate__headShake";
                 feedback.style.opacity = '1';
             }
 
-            // Tahan 3.5 detik sebelum ganti soal agar anak sempat membaca penjelasannya
             setTimeout(() => {
                 ceritaIndex++;
                 if (ceritaIndex < dataCerita.length) {
@@ -1097,28 +1537,37 @@
                 } else {
                     selesaiCerita();
                 }
-            }, 3500); 
+            }, 3400);
         }
 
         function selesaiCerita() {
+            playSound('fanfare');
             document.getElementById('ceritaPlayArea').classList.add('hidden');
             document.getElementById('ceritaResultArea').classList.remove('hidden');
-            document.getElementById('ceritaResultArea').classList.add('animate__animated', 'animate__zoomIn');
             document.getElementById('ceritaFinalSkor').innerText = ceritaSkor;
-            if(ceritaSkor >= 80) triggerBigConfetti();
+            if (ceritaSkor >= 80) triggerBigConfetti();
         }
 
-        // Init simulasi dan puzzle dengan aman setelah seluruh elemen DOM selesai dimuat
+        // Inisialisasi awal saat halaman selesai dimuat
         window.addEventListener('DOMContentLoaded', () => {
-            // Pastikan elemennya ada sebelum menjalankan fungsi
-            if (document.getElementById('visualContainer')) {
-                renderVisualSimulasi();
-            }
-            if (document.getElementById('puzzleSoalContainer') && document.getElementById('puzzleJawabanContainer')) {
-                initPuzzle();
-            }
+            renderVisualSimulasi();
+            initPuzzle();
+            generateTabel();
         });
+    </script>
 
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(err => {
+              console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+      }
     </script>
 
     <script>
